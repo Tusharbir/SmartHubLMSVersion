@@ -13,6 +13,7 @@
     <!-- styles.xml -->
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:fontFamily">@font/ptseriff</item>
+
     </style>
 
 

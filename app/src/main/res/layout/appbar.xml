@@ -6,8 +6,6 @@
     android:background="@color/secondaryColor"
     android:id="@+id/AppBar"
     android:theme="@style/ToolbarTheme"
-
-
     >
 
 
