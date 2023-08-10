@@ -27,8 +27,8 @@ public class AdminHomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home_page);
 //        appbar=findViewById(R.id.AppBar);
-        String username = getIntent().getStringExtra("USER_NAME");
-        db = FirebaseFirestore.getInstance();
+//        String username = getIntent().getStringExtra("USER_NAME");
+//        db = FirebaseFirestore.getInstance();
 
 
         BottomNavigationView bottomNavigation;

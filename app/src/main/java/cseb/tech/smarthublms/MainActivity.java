@@ -1,5 +1,6 @@
 package cseb.tech.smarthublms;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -10,8 +11,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText userText, passText;
     private FirebaseAuth mAuth;
+    FirebaseFirestore firestore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +36,37 @@ public class MainActivity extends AppCompatActivity {
         appbar=findViewById(R.id.AppBar);
 //        getSupportActionBar().setTitle(R.string.app_name);
         setSupportActionBar(appbar);
-
+        firestore = FirebaseFirestore.getInstance();
 
         userText=findViewById(R.id.userNameTv);
         passText=findViewById(R.id.passwordTv);
         mAuth=FirebaseAuth.getInstance();
+
+        if (mAuth.getCurrentUser() != null) {
+            firestore.collection("Users").document(mAuth.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.getResult().exists()) {
+                        String a = task.getResult().getString("Type");
+                        Toast.makeText(MainActivity.this, a + "", Toast.LENGTH_SHORT).show();
+
+                        if (Objects.equals(a, "Admin")) {
+                            Intent i = new Intent(MainActivity.this, AdminHomePage.class);
+                            startActivity(i);
+                            finish();
+                        } else if (Objects.equals(a, "Student")) {
+                            Intent i = new Intent(MainActivity.this, StudentActivity.class);
+                            startActivity(i);
+                            finish();
+                        } else if (Objects.equals(a, "Teacher")) {
+                            Intent i = new Intent(MainActivity.this, TeacherActivity.class);
+                            startActivity(i);
+                            finish();
+                        }
+                    }
+                }
+            });
+        }
 
     }
 
@@ -48,25 +83,52 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loginUser(String username, String password){
-        mAuth.signInWithEmailAndPassword(username, password)
-                .addOnCompleteListener(this, task -> {
-                    if (task.isSuccessful()) {
 
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        openNextActivity(username);
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Toast.makeText(MainActivity.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
-                    }
-                });
+        mAuth.signInWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                if (task.isSuccessful())
+                {
+                    firestore.collection("Users").document(mAuth.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task)
+                        {
+                            if (task.getResult().exists())
+                            {
+                                String a =  task.getResult().getString("Type");
+                                Toast.makeText(MainActivity.this, a+"", Toast.LENGTH_SHORT).show();
+
+                                if(a == "Admin")
+                                {
+                                    Intent i = new Intent(MainActivity.this, MainActivity.class);
+                                    startActivity(i);
+                                    finish();
+                                }
+
+                                else  if (a == "Student")
+                                {
+                                    Intent i = new Intent(MainActivity.this, StudentActivity.class);
+                                    startActivity(i);
+                                    finish();
+                                }
+
+                                else  if (a == "Teacher")
+                                {
+                                    Intent i = new Intent(MainActivity.this, TeacherActivity.class);
+                                    startActivity(i);
+                                    finish();
+                                }
+                            }
+                        }
+                    });
+
+                }
+
+            }
+        });
 
     }
 
-    private void openNextActivity(String username){
-        Intent intent = new Intent(this, AdminHomePage.class);
-        intent.putExtra("USER_NAME", username);
-        startActivity(intent);
 
-    }
 }
