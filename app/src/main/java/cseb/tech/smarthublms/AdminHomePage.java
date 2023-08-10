@@ -16,6 +16,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
+import cseb.tech.smarthublms.AdminFragment.AddBranchesFragment;
+import cseb.tech.smarthublms.AdminFragment.AddCourseFragment;
+import cseb.tech.smarthublms.AdminFragment.AddHodsFragment;
+import cseb.tech.smarthublms.AdminFragment.HomeFragment;
+
 public class AdminHomePage extends AppCompatActivity {
     private FirebaseFirestore db;
 
@@ -50,7 +55,7 @@ public class AdminHomePage extends AppCompatActivity {
                 {
                     if (Frag != "home")
                     {
-                        //replacefragment( HomeFragment());
+                        replacefragment( new HomeFragment());
                         Frag = "home";
                     }
                     else {
@@ -63,7 +68,7 @@ public class AdminHomePage extends AppCompatActivity {
                 } else if (itemId == R.id.addCourse) {
                     if (Frag != "student")
                     {
-                        //   replacefragment(new HomeFragment());
+                           replacefragment(new AddCourseFragment());
                         Frag = "student";
                     }
                     else {
@@ -76,7 +81,7 @@ public class AdminHomePage extends AppCompatActivity {
                 } else if (itemId == R.id.addBranches) {
                     if (Frag != "subject")
                     {
-                        //   replacefragment(new HomeFragment());
+                           replacefragment(new AddBranchesFragment());
                         Frag = "subject";
                     }
                     else {
@@ -88,7 +93,7 @@ public class AdminHomePage extends AppCompatActivity {
                 else if (itemId == R.id.addHods) {
                     if (Frag != "abc")
                     {
-                        //   replacefragment(new HomeFragment());
+                           replacefragment(new AddHodsFragment());
                         Frag = "abc";
                     }
                     else {
