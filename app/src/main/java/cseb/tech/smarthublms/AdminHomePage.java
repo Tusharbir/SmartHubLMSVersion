@@ -51,7 +51,7 @@ public class AdminHomePage extends AppCompatActivity {
                     if (Frag != "home")
                     {
                         //replacefragment( HomeFragment());
-                        Frag = "teacher";
+                        Frag = "home";
                     }
                     else {
                         Toast.makeText(AdminHomePage.this, "khulya va pra", Toast.LENGTH_SHORT).show();
