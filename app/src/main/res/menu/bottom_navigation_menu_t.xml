@@ -1,23 +1,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/subject_t"
-        android:icon="@drawable/ic_like"
+        android:icon="@drawable/course"
         android:title="Subject" />
 
     <item
         android:id="@+id/campusVibes"
-        android:icon="@drawable/ic_like"
+        android:icon="@drawable/course"
         android:title="CampusVibes" />
 
 
     <item
         android:id="@+id/notification_t"
-        android:icon="@drawable/ic_like"
+        android:icon="@drawable/course"
         android:title="Notification" />
 
     <item
         android:id="@+id/profile"
-        android:icon="@drawable/ic_like"
+        android:icon="@drawable/course"
         android:title="Profile" />
 
 
