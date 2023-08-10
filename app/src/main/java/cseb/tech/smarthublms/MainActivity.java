@@ -38,7 +38,13 @@ public class MainActivity extends AppCompatActivity {
     public void logicButtonLogin(View view){
         String username = userText.getText().toString();
         String password = passText.getText().toString();
-        loginUser(username, password);
+
+        if(!username.isEmpty() && !password.isEmpty()) {
+            loginUser(username, password);
+        }
+        else {
+            Toast.makeText(this, "Empty Field Exists!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void loginUser(String username, String password){

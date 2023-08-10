@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "75742083451",
+    "project_id": "smarthub-uni-lms",
+    "storage_bucket": "smarthub-uni-lms.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:75742083451:android:6939b9c1df480eb33f65de",
+        "android_client_info": {
+          "package_name": "cseb.tech.smarthublms"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "75742083451-ftt8iraicocpquplf3imvb0f6g8a3dhe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "cseb.tech.smarthublms",
+            "certificate_hash": "8d1aa5e6681d204d3c86768dcbc5351ef27c9c24"
+          }
+        },
+        {
+          "client_id": "75742083451-65fvd916hjfh0ame0esjv07fvmtjabfg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA-lCgFRS99BObjRDokeohyLGTa7nn9DNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "75742083451-65fvd916hjfh0ame0esjv07fvmtjabfg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
