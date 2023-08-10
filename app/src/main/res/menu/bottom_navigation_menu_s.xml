@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/subject_s"
+        android:icon="@drawable/ic_like"
+        android:title="Subject" />
+
+    <item
+        android:id="@+id/abc"
+        android:icon="@drawable/ic_like"
+        android:title="Abc" />
+
+    <item
+        android:id="@+id/campusVibess"
+        android:icon="@drawable/ic_like"
+        android:title="CampusVibes" />
+
+
+    <item
+        android:id="@+id/notification_s"
+        android:icon="@drawable/ic_like"
+        android:title="Notification" />
+
+    <item
+        android:id="@+id/profile_s"
+        android:icon="@drawable/ic_like"
+        android:title="Profile" />
+
+
+
+
+</menu>
