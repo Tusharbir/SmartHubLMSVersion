@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -184,21 +185,55 @@ public class AddCourseFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if(branchname.equals("No Selection") || course.equals("No Selection"))
-                {
+//                if(branchname.equals("No Selection") || course.equals("No Selection"))
+//                {
+//                    Toast.makeText(getActivity(), "Make Selection", Toast.LENGTH_SHORT).show();
+//                }
+//                else
+//                {
+//
+//                    HashMap<String,String> v = new HashMap<>();
+//                    v.put("Course",course);
+//                    v.put("Branch",branchname);
+//
+//                    db.collection("Course").add(v).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<DocumentReference> task) {
+//                            Toast.makeText(getActivity(), "data Added", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
+                if (branchname.equals("No Selection") || course.equals("No Selection")) {
                     Toast.makeText(getActivity(), "Make Selection", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
+                } else {
+                    final String docId = course + "_" + branchname; // Create a unique ID based on course and branchname
 
-                    HashMap<String,String> v = new HashMap<>();
-                    v.put("Course",course);
-                    v.put("Branch",branchname);
-
-                    db.collection("Course").add(v).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    db.collection("Course").document(docId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
-                        public void onComplete(@NonNull Task<DocumentReference> task) {
-                            Toast.makeText(getActivity(), "data Added", Toast.LENGTH_SHORT).show();
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    Toast.makeText(getActivity(), "Entry already exists", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    HashMap<String, String> v = new HashMap<>();
+                                    v.put("Course", course);
+                                    v.put("Branch", branchname);
+
+                                    db.collection("Course").document(docId).set(v).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(getActivity(), "Data Added", Toast.LENGTH_SHORT).show();
+                                            } else {
+                                                Toast.makeText(getActivity(), "Error adding data", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+                                }
+                            } else {
+                                Toast.makeText(getActivity(), "Error checking for duplicates", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     });
                 }
