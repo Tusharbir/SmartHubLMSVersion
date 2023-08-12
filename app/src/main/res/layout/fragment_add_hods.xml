@@ -15,22 +15,78 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
+
+            <EditText
+                android:id="@+id/adminAddHodCity"
+                android:layout_width="284dp"
+                android:layout_height="36dp"
+                android:ems="10"
+                android:inputType="text"
+                android:textSize="12sp"
+                android:text="Name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.204"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+            <Spinner
+                android:id="@+id/adminAddHodDepartment"
+                android:layout_width="255dp"
+                android:layout_height="39dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.179"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="116dp"
+                android:fontFamily="times"
+                android:text="Select Department"
+                android:textColor="#373737"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/adminAddHodDepartment"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.107"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="times"
+                android:text="Assign Department "
+                android:textColor="#373737"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.139"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.784" />
 
             <TextView
                 android:id="@+id/textView26"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:fontFamily="times"
                 android:text="Pin Code"
                 android:textColor="#373737"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/adminAddHodPinCodeET"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.082"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="903dp" />
+                app:layout_constraintTop_toBottomOf="@+id/adminAddHodAddressET" />
 
             <TextView
                 android:id="@+id/textView25"
@@ -38,16 +94,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="times"
-                android:text="Select City"
+                android:text="City"
                 android:textColor="#373737"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.082"
+                app:layout_constraintHorizontal_bias="0.068"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView22"
-                app:layout_constraintVertical_bias="0.128" />
+                app:layout_constraintVertical_bias="0.127" />
 
             <TextView
                 android:id="@+id/textView24"
@@ -55,16 +111,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="times"
-                android:text="Select State"
+                android:text="State"
                 android:textColor="#373737"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.085"
+                app:layout_constraintHorizontal_bias="0.075"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView22"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.004" />
 
             <TextView
                 android:id="@+id/textView23"
@@ -116,25 +172,16 @@
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:fontFamily="times"
                 android:text="Select Course"
                 android:textColor="#373737"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                tools:layout_editor_absoluteX="217dp"
-                tools:layout_editor_absoluteY="1281dp" />
-
-            <TextView
-                android:id="@+id/textView14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="times"
-                android:text="Select Department"
-                android:textColor="#373737"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="121dp"
-                tools:layout_editor_absoluteY="1303dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.092"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
             <TextView
                 android:id="@+id/textView18"
@@ -152,18 +199,6 @@
                 app:layout_constraintHorizontal_bias="0.203"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView22" />
-
-            <TextView
-                android:id="@+id/textView19"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="times"
-                android:text="Landmark*"
-                android:textColor="#373737"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                tools:layout_editor_absoluteX="121dp"
-                tools:layout_editor_absoluteY="1293dp" />
 
             <EditText
                 android:id="@+id/adminAddHodemailIDET"
@@ -284,40 +319,20 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.116" />
 
-            <Spinner
-                android:id="@+id/adminAddHodCityET"
-                android:layout_width="254dp"
-                android:layout_height="35dp"
-                android:layout_marginBottom="27dp"
-                app:layout_constraintBottom_toTopOf="@+id/textView18"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.165"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView25"
-                app:layout_constraintVertical_bias="0.0" />
-
-            <Spinner
-                android:id="@+id/adminAddHodStateET"
-                android:layout_width="286dp"
-                android:layout_height="34dp"
-                app:layout_constraintBottom_toTopOf="@+id/textView25"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.208"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView24"
-                app:layout_constraintVertical_bias="0.0" />
-
             <EditText
                 android:id="@+id/adminAddHodPinCodeET"
-                android:layout_width="175dp"
-                android:layout_height="41dp"
+                android:layout_width="150dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="25dp"
                 android:ems="10"
                 android:inputType="number"
                 android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/textView7"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.118"
+                app:layout_constraintHorizontal_bias="0.107"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="925dp" />
+                app:layout_constraintTop_toBottomOf="@+id/textView26" />
 
             <EditText
                 android:id="@+id/adminAddHodAddressET"
@@ -334,7 +349,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
             <EditText
-                android:id="@+id/editTextPhone"
+                android:id="@+id/adminAddHODPhoneEt"
                 android:layout_width="284dp"
                 android:layout_height="36dp"
                 android:ems="10"
@@ -345,6 +360,43 @@
                 app:layout_constraintHorizontal_bias="0.204"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView23"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Spinner
+                android:id="@+id/adminAddHODSpinner"
+                android:layout_width="255dp"
+                android:layout_height="39dp"
+                app:layout_constraintBottom_toTopOf="@+id/textView12"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.179"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView13"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <Button
+                android:id="@+id/adminaddHodButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/adminAddHodDepartment" />
+
+            <EditText
+                android:id="@+id/adminAddHodState"
+                android:layout_width="284dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="3dp"
+                android:textSize="12sp"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Name"
+                app:layout_constraintBottom_toTopOf="@+id/textView25"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.212"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView24"
                 app:layout_constraintVertical_bias="0.0" />
 
 

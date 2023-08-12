@@ -117,8 +117,10 @@ public class AddCourseFragment extends Fragment {
         courseNames.add("No Selection");
         courseNames.add("Bachelors of Technology(B.Tech)");
         courseNames.add("Masters of Technology(M.Tech)");
-        courseNames.add("Bachelors of Computer Applications(BCA)");
-        courseNames.add("Masters of Computer Applications(MSA)");
+        courseNames.add("Bachelors of Hotel Management");
+        courseNames.add("Bachelors of Computer Applications");
+
+        courseNames.add("Masters");
 
 
 
@@ -153,9 +155,9 @@ public class AddCourseFragment extends Fragment {
         ArrayList<String> branchesNames = new ArrayList<>();
         branchesNames.add("No Selection");
         branchesNames.add("Computer Science and Technology");
-        branchesNames.add("Masters of Technology(M.Tech)");
-        branchesNames.add("Bachelors of Computer Applications(BCA)");
-        branchesNames.add("Masters of Computer Applications(MSA)");
+        branchesNames.add("Civil Engineering");
+        branchesNames.add("Hotel Management(BHM)");
+        branchesNames.add("Computer Applications (BCA)");
 
 
         ArrayAdapter<String> branchAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_item, branchesNames);
