@@ -76,15 +76,8 @@ public class AdminHomePage extends AppCompatActivity {
                     // frag(searchFragment);
                     return true;
 
-                } else if (itemId == R.id.addBranches) {
-                    if (Frag != "subject") {
-                        replacefragment(new AddBranchesFragment());
-                        Frag = "subject";
-                    } else {
-                        Toast.makeText(AdminHomePage.this, "khulya va pra", Toast.LENGTH_SHORT).show();
-                    }
-                    return true;
-                } else if (itemId == R.id.addHods) {
+                }
+                else if (itemId == R.id.addHods) {
                     if (Frag != "abc") {
                         replacefragment(new AddHodsFragment());
                         Frag = "abc";
@@ -92,6 +85,11 @@ public class AdminHomePage extends AppCompatActivity {
                         Toast.makeText(AdminHomePage.this, "khulya va pra", Toast.LENGTH_SHORT).show();
                     }
                     return true;
+                } else if (itemId==R.id.logout) {
+
+                    LogoutLogic.logoutLogic( AdminHomePage.this);
+
+
                 }
 
                 return false;

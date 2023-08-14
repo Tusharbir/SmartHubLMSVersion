@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText userText, passText;
     private FirebaseAuth mAuth;
     FirebaseFirestore firestore;
+    private TextView resetView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         userText=findViewById(R.id.userNameTv);
         passText=findViewById(R.id.passwordTv);
         mAuth=FirebaseAuth.getInstance();
+
+        resetView=findViewById(R.id.resetPassWordTV);
 
         if (mAuth.getCurrentUser() != null) {
             firestore.collection("Users").document(mAuth.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -68,6 +72,13 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+        resetView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetPassword();
+            }
+        });
+
     }
 
     public void logicButtonLogin(View view){
@@ -82,9 +93,83 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void loginUser(String username, String password){
+    private void loginUser(String username, String password) {
 
-        mAuth.signInWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//        mAuth.signInWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//            @Override
+//            public void onComplete(@NonNull Task<AuthResult> task) {
+//
+//                if (task.isSuccessful())
+//                {
+//                    firestore.collection("Users").document(mAuth.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<DocumentSnapshot> task)
+//                        {
+//                            if (task.getResult().exists())
+//                            {
+//                                String a =  task.getResult().getString("Type");
+//                                Toast.makeText(MainActivity.this, a+"", Toast.LENGTH_SHORT).show();
+//
+//                                if(a == "Admin")
+//                                {
+//                                    Intent i = new Intent(MainActivity.this, MainActivity.class);
+//                                    startActivity(i);
+//                                    finish();
+//                                }
+//
+//                                else  if (a == "Student")
+//                                {
+//                                    Intent i = new Intent(MainActivity.this, StudentActivity.class);
+//                                    startActivity(i);
+//                                    finish();
+//                                }
+//
+//                                else  if (a == "Teacher")
+//                                {
+//                                    Intent i = new Intent(MainActivity.this, TeacherActivity.class);
+//                                    startActivity(i);
+//                                    finish();
+//                                }
+//                            }
+//                        }
+//                    });
+//
+//                }
+//
+//            }
+//        });
+
+        if (mAuth.getCurrentUser() != null) {
+            firestore.collection("Users").document(mAuth.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.getResult().exists()) {
+                        String a = task.getResult().getString("Type");
+                        Toast.makeText(MainActivity.this, a + "", Toast.LENGTH_SHORT).show();
+
+                        if (Objects.equals(a, "Admin")) {
+                            Intent i = new Intent(MainActivity.this, MainActivity.class);
+                            startActivity(i);
+                            finish();
+                        } else if (Objects.equals(a, "Student")) {
+                            Intent i = new Intent(MainActivity.this, StudentActivity.class);
+                            startActivity(i);
+                            finish();
+                        } else if (Objects.equals(a, "Teacher")) {
+                            Intent i = new Intent(MainActivity.this, TeacherActivity.class);
+                            startActivity(i);
+                            finish();
+                        } else if (Objects.equals(a, "HOD")) {
+                            Intent i = new Intent(MainActivity.this, TeacherActivity.class);
+                            startActivity(i);
+                            finish();
+
+                        }
+                    }
+                }
+            });
+        } else {
+            mAuth.signInWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
 
@@ -94,27 +179,23 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task)
                         {
-                            if (task.getResult().exists())
-                            {
-                                String a =  task.getResult().getString("Type");
-                                Toast.makeText(MainActivity.this, a+"", Toast.LENGTH_SHORT).show();
+                            if (task.getResult().exists()) {
+                                String a = task.getResult().getString("Type");
+                                Toast.makeText(MainActivity.this, a + "", Toast.LENGTH_SHORT).show();
 
-                                if(a == "Admin")
-                                {
+                                if (Objects.equals(a, "Admin")) {
                                     Intent i = new Intent(MainActivity.this, MainActivity.class);
                                     startActivity(i);
                                     finish();
-                                }
-
-                                else  if (a == "Student")
-                                {
+                                } else if (Objects.equals(a, "Student")) {
                                     Intent i = new Intent(MainActivity.this, StudentActivity.class);
                                     startActivity(i);
                                     finish();
-                                }
-
-                                else  if (a == "Teacher")
-                                {
+                                } else if (Objects.equals(a, "Teacher")) {
+                                    Intent i = new Intent(MainActivity.this, TeacherActivity.class);
+                                    startActivity(i);
+                                    finish();
+                                } else if (Objects.equals(a, "HOD")) {
                                     Intent i = new Intent(MainActivity.this, TeacherActivity.class);
                                     startActivity(i);
                                     finish();
@@ -124,9 +205,39 @@ public class MainActivity extends AppCompatActivity {
                     });
 
                 }
+                else {
+                    Toast.makeText(MainActivity.this, "Incorrect Details, Try Resetting Your Password", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
+
+
+        }
+    }
+
+
+    public void resetPassword(){
+        String emailId=userText.getText().toString();
+
+        if(!emailId.isEmpty()){
+            mAuth.sendPasswordResetEmail(emailId).addOnCompleteListener(
+                    new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                Toast.makeText(MainActivity.this, "Email Sent", Toast.LENGTH_SHORT).show();
+                            }
+                            else {
+                                Toast.makeText(MainActivity.this, "Error Occured", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+            );
+        }
+        else {
+            Toast.makeText(this, "Enter Email ID", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

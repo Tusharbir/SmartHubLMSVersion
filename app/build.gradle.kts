@@ -44,4 +44,20 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
     implementation("com.google.firebase:firebase-analytics")
+
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")// Use the latest version
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0") // Gson converter for JSON parsing
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.11.0")
+
+    implementation ("com.sun.mail:android-mail:1.6.5")
+    implementation ("com.sun.mail:android-activation:1.6.5")
+
+
+
+
+
+
+
+
 }

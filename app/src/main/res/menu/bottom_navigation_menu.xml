@@ -9,9 +9,9 @@
         android:icon="@drawable/course"
         android:title="Add Course" />
     <item
-        android:id="@+id/addBranches"
+        android:id="@+id/logout"
         android:icon="@drawable/branches"
-        android:title="Add Branches" />
+        android:title="Logout" />
 
     <item
         android:id="@+id/addHods"

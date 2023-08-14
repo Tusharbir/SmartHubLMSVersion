@@ -16,6 +16,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.ArrayAdapter;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
@@ -26,6 +31,7 @@ import java.util.Map;
 
 import cseb.tech.smarthublms.OtpGenerator;
 import cseb.tech.smarthublms.R;
+import cseb.tech.smarthublms.SMTPMailSender;
 
 
 //public class AddHodsFragment extends Fragment {
@@ -84,12 +90,18 @@ public class AddHodsFragment extends Fragment {
 
     private EditText name, fName, mName, emailId, phoneNumber, state, city, address, pinCode;
     private Button adminaddHodButton;
+    private FirebaseAuth mAuth;
+    private String otp;
+
+
+
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_hods, container, false);
 
         db=FirebaseFirestore.getInstance();
+        mAuth=FirebaseAuth.getInstance();
 
         courseSpinner = view.findViewById(R.id.adminAddHODSpinner);
         branchSpinner = view.findViewById(R.id.adminAddHodDepartment);
@@ -124,24 +136,27 @@ public class AddHodsFragment extends Fragment {
     }
 
     private void fetchBranchesAndCourses() {
+
+        List<String> branches = new ArrayList<>();
+        List<String> courses = new ArrayList<>();
+        branches.add("No Selection");
+        courses.add("No Selection");
+
+
+
         db.collection("Course")
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        List<String> branches = new ArrayList<>();
-                        List<String> courses = new ArrayList<>();
-
                         for (QueryDocumentSnapshot document : task.getResult()) {
                             String branch = document.getString("Branch");
                             String course = document.getString("Course");
 
                             if (branch != null && !branches.contains(branch)) {
-                                branches.add("No Selection");
                                 branches.add(branch);
                             }
 
                             if (course != null && !courses.contains(course)) {
-                                courses.add("No Selection");
                                 courses.add(course);
                             }
                         }
@@ -211,20 +226,43 @@ public class AddHodsFragment extends Fragment {
                                 hod.put("Pin Code", pinCodeS);
                                 hod.put("Course", courseS);
                                 hod.put("Branch", branchS);
+//                                hod.put("UserId",userID);
 
                                 db.collection("HODS")
                                         .add(hod)
                                         .addOnSuccessListener(documentReference -> {
                                             // Handle success, e.g., show a success message or clear the fields
                                             OtpGenerator obj = new OtpGenerator();
-                                            String otp = obj.OTPGenerator();
+                                            otp = obj.OTPGenerator();
+
+                                            mAuth.createUserWithEmailAndPassword(emailIdS, otp)
+                                                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                                            if (task.isSuccessful()) {
+                                                                // User registered successfully
+                                                                FirebaseUser user = mAuth.getCurrentUser();
+//                                                    userID= user.getUid(); // This is the user ID
+
+                                                                // TODO: You can now use this UID to store additional user details in Firestore or Firebase Realtime Database
 
 
-                                            Toast.makeText(getActivity(), otp, Toast.LENGTH_SHORT).show();
-                                            String subject="Enrollment and Credentials as HOD";
-                                            String context= "Dear "+nameS+"! \nNow enrolled as HOD for Department"+branchS+".\nLogin with this number and OTP: "+otp+"/Please Change your password after Login";
+//                                            Toast.makeText(getActivity(), otp, Toast.LENGTH_SHORT).show();
+                                                                String subject="Enrollment and Credentials as HOD";
+                                                                String context= "Dear "+nameS+"! \nNow enrolled as HOD for Department"+branchS+"\nLogin with this number and OTP: "+otp+"/Please Change your password after Login";
 
-//                                            EmailSender.emailSender(emailIdS,subject,context);
+                                                                SMTPMailSender.smtpMailSender(emailIdS,subject,nameS,branchS, otp);
+                                                                Toast.makeText(getActivity(), "Email Sent", Toast.LENGTH_SHORT).show();
+
+
+
+                                                                Toast.makeText(getActivity(), "User registered successfully!", Toast.LENGTH_SHORT).show();
+                                                            } else {
+                                                                // Registration failed
+                                                                Toast.makeText(getActivity(), "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                                            }
+                                                        }
+                                                    });
 
                                         })
                                         .addOnFailureListener(e -> {
@@ -232,18 +270,26 @@ public class AddHodsFragment extends Fragment {
                                             Log.i("data addition", e.toString());
                                             Toast.makeText(getActivity(), "Error Occured", Toast.LENGTH_SHORT).show();
                                         });
+
+
                             }
                         }
 
 
                     });
-        }
 
+
+        }
         else {
             Toast.makeText(getActivity(), "Empty Field Exists!", Toast.LENGTH_SHORT).show();
         }
+
+
+        }
+
+
     }
-}
+
 
 
 
