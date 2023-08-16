@@ -17,6 +17,8 @@ import android.widget.Toast;
 import android.widget.ArrayAdapter;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -92,6 +94,7 @@ public class AddHodsFragment extends Fragment {
     private Button adminaddHodButton;
     private FirebaseAuth mAuth;
     private String otp;
+    private String userid;
 
 
 
@@ -242,21 +245,37 @@ public class AddHodsFragment extends Fragment {
                                                             if (task.isSuccessful()) {
                                                                 // User registered successfully
                                                                 FirebaseUser user = mAuth.getCurrentUser();
-//                                                    userID= user.getUid(); // This is the user ID
-
+                                                                userid= user.getUid();
                                                                 // TODO: You can now use this UID to store additional user details in Firestore or Firebase Realtime Database
-
-
-//                                            Toast.makeText(getActivity(), otp, Toast.LENGTH_SHORT).show();
+//                                                              Toast.makeText(getActivity(), otp, Toast.LENGTH_SHORT).show();
                                                                 String subject="Enrollment and Credentials as HOD";
                                                                 String context= "Dear "+nameS+"! \nNow enrolled as HOD for Department"+branchS+"\nLogin with this number and OTP: "+otp+"/Please Change your password after Login";
 
                                                                 SMTPMailSender.smtpMailSender(emailIdS,subject,nameS,branchS, otp);
                                                                 Toast.makeText(getActivity(), "Email Sent", Toast.LENGTH_SHORT).show();
 
-
-
                                                                 Toast.makeText(getActivity(), "User registered successfully!", Toast.LENGTH_SHORT).show();
+
+                                                                Map<String, Object> userData = new HashMap<>();
+                                                                userData.put("Type", "HOD");
+                                                                // ... add other user data
+
+                                                                db.collection("Users").document(user.getUid())
+                                                                        .set(userData)
+                                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                            @Override
+                                                                            public void onSuccess(Void aVoid) {
+                                                                                Toast.makeText(getActivity(), "User Type set to HOD", Toast.LENGTH_SHORT).show();
+                                                                            }
+                                                                        })
+                                                                        .addOnFailureListener(new OnFailureListener() {
+                                                                            @Override
+                                                                            public void onFailure(@NonNull Exception e) {
+                                                                                Toast.makeText(getActivity(), "Error Setting User Type to HOD", Toast.LENGTH_SHORT).show();
+
+                                                                            }
+                                                                        });
+
                                                             } else {
                                                                 // Registration failed
                                                                 Toast.makeText(getActivity(), "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

@@ -136,7 +136,7 @@ public class AddCourseFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selected = parentView.getItemAtPosition(position).toString();
-                Toast.makeText(getActivity(), "Selected: " + selected, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Selected: " + selected, Toast.LENGTH_SHORT).show();
                 course = selected;
             }
 
@@ -171,7 +171,7 @@ public class AddCourseFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selected = parentView.getItemAtPosition(position).toString();
-                Toast.makeText(getActivity(), "Selected: " + selected, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getActivity(), "Selected: " + selected, Toast.LENGTH_SHORT).show();
                 branchname = selected;
             }
 

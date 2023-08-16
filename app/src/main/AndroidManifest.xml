@@ -13,6 +13,9 @@
         android:theme="@style/Theme.SmartHubLMS"
         tools:targetApi="31">
         <activity
+            android:name=".HODActivity"
+            android:exported="false" />
+        <activity
             android:name=".TeacherActivity"
             android:exported="false" />
         <activity

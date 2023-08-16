@@ -8,15 +8,17 @@
         android:id="@+id/addCourse"
         android:icon="@drawable/course"
         android:title="Add Course" />
-    <item
-        android:id="@+id/logout"
-        android:icon="@drawable/branches"
-        android:title="Logout" />
+
 
     <item
         android:id="@+id/addHods"
         android:icon="@drawable/hods"
         android:title="Add HODs" />
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/logout"
+        android:title="Logout" />
 
 <!--    <item-->
 <!--        android:id="@+id/viewHods"-->

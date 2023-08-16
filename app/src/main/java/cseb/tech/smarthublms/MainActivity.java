@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
                                     startActivity(i);
                                     finish();
                                 } else if (Objects.equals(a, "HOD")) {
-                                    Intent i = new Intent(MainActivity.this, TeacherActivity.class);
+                                    Intent i = new Intent(MainActivity.this, HODActivity.class);
                                     startActivity(i);
                                     finish();
                                 }
