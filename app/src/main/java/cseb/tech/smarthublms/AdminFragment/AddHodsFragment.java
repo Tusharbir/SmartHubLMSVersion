@@ -97,42 +97,35 @@ public class AddHodsFragment extends Fragment {
     private String userid;
 
 
-
-
-
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_add_hods, container, false);
 
-        db=FirebaseFirestore.getInstance();
-        mAuth=FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
         courseSpinner = view.findViewById(R.id.adminAddHODSpinner);
         branchSpinner = view.findViewById(R.id.adminAddHodDepartment);
 
-        name=view.findViewById(R.id.adminAddHodET);
-        fName=view.findViewById(R.id.adminAddHodFathersNameET);
-        mName=view.findViewById(R.id.adminAddHodMothersNameET);
-        emailId=view.findViewById(R.id.adminAddHodemailIDET);
-        phoneNumber=view.findViewById(R.id.adminAddHODPhoneEt);
-        state=view.findViewById(R.id.adminAddHodState);
-        city=view.findViewById(R.id.adminAddHodCity);
+        name = view.findViewById(R.id.adminAddHodET);
+        fName = view.findViewById(R.id.adminAddHodFathersNameET);
+        mName = view.findViewById(R.id.adminAddHodMothersNameET);
+        emailId = view.findViewById(R.id.adminAddHodemailIDET);
+        phoneNumber = view.findViewById(R.id.adminAddHODPhoneEt);
+        state = view.findViewById(R.id.adminAddHodState);
+        city = view.findViewById(R.id.adminAddHodCity);
         address = view.findViewById(R.id.adminAddHodAddressET);
-        pinCode=view.findViewById(R.id.adminAddHodPinCodeET);
-        adminaddHodButton=view.findViewById(R.id.adminaddHodButton);
+        pinCode = view.findViewById(R.id.adminAddHodPinCodeET);
+        adminaddHodButton = view.findViewById(R.id.adminaddHodButton);
 
         fetchBranchesAndCourses();
 
-        adminaddHodButton.setOnClickListener(new View.OnClickListener(){
+        adminaddHodButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 addData();
             }
         });
-
-
-
-
 
 
         return view;
@@ -144,7 +137,6 @@ public class AddHodsFragment extends Fragment {
         List<String> courses = new ArrayList<>();
         branches.add("No Selection");
         courses.add("No Selection");
-
 
 
         db.collection("Course")
@@ -180,21 +172,24 @@ public class AddHodsFragment extends Fragment {
     }
 
 
-    private void addData(){
+    private void addData() {
 
         String nameS, fNameS, mNameS, emailIdS, phoneNumberS, stateS, cityS, addressS, pinCodeS, courseS, branchS;
-        nameS=name.getText().toString();
-        fNameS=fName.getText().toString();
-        mNameS=mName.getText().toString();
-        emailIdS=emailId.getText().toString();
-        phoneNumberS=phoneNumber.getText().toString();
-        stateS=state.getText().toString();
-        addressS=address.getText().toString();
-        pinCodeS=pinCode.getText().toString();
-        cityS=city.getText().toString();
+        nameS = name.getText().toString();
+        fNameS = fName.getText().toString();
+        mNameS = mName.getText().toString();
+        emailIdS = emailId.getText().toString();
+        phoneNumberS = phoneNumber.getText().toString();
+        stateS = state.getText().toString();
+        addressS = address.getText().toString();
+        pinCodeS = pinCode.getText().toString();
+        cityS = city.getText().toString();
 
-        branchS=branchSpinner.getSelectedItem().toString();
-        courseS=courseSpinner.getSelectedItem().toString();
+        branchS = branchSpinner.getSelectedItem().toString();
+        courseS = courseSpinner.getSelectedItem().toString();
+
+        OtpGenerator obj = new OtpGenerator();
+        otp = obj.OTPGenerator();
 
         if (!nameS.isEmpty() &&
                 !fNameS.isEmpty() &&
@@ -206,8 +201,8 @@ public class AddHodsFragment extends Fragment {
                 !addressS.isEmpty() &&
                 !pinCodeS.isEmpty() &&
                 !courseS.equals("No Selection") &&
-                !branchS.equals("No Selection"))
-        {
+                !branchS.equals("No Selection")) {
+
             db.collection("HODS")
                     .whereEqualTo("Branch", branchS)
                     .get()
@@ -217,97 +212,81 @@ public class AddHodsFragment extends Fragment {
                                 Toast.makeText(getActivity(), "HOD Already Assigned! Try Deleting", Toast.LENGTH_SHORT).show();
                             } else {
                                 // Branch is not assigned, proceed to save the details
-                                Map<String, Object> hod = new HashMap<>();
-                                hod.put("Name", nameS);
-                                hod.put("Father's Name", fNameS);
-                                hod.put("Mother's Name", mNameS);
-                                hod.put("Email-ID", emailIdS);
-                                hod.put("Phone Number", phoneNumberS);
-                                hod.put("State", stateS);
-                                hod.put("City", cityS);
-                                hod.put("Address", addressS);
-                                hod.put("Pin Code", pinCodeS);
-                                hod.put("Course", courseS);
-                                hod.put("Branch", branchS);
+                                mAuth.createUserWithEmailAndPassword(emailIdS, otp)
+                                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                                if (task.isSuccessful()) {
+                                                    // User registered successfully
+                                                    FirebaseUser user = mAuth.getCurrentUser();
+                                                    userid = user.getUid();
 
-
-
-                                db.collection("HODS")
-                                        .add(hod)
-                                        .addOnSuccessListener(documentReference -> {
-                                            // Handle success, e.g., show a success message or clear the fields
-                                            OtpGenerator obj = new OtpGenerator();
-                                            otp = obj.OTPGenerator();
-
-                                            mAuth.createUserWithEmailAndPassword(emailIdS, otp)
-                                                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                                            if (task.isSuccessful()) {
-                                                                // User registered successfully
-                                                                FirebaseUser user = mAuth.getCurrentUser();
-                                                                userid= user.getUid();
-
-
-                                                            // Adding UserId in Hod
-                                                              //  Map<String, Object> hod = new HashMap<>();
-                                                                hod.put("UserId",userid);
-
-                                                                db.collection("HODS")
-                                                                        .add(hod)
-                                                                        .addOnSuccessListener(documentReference -> {
-
-                                                                            Toast.makeText(getActivity(), "User Id Stored", Toast.LENGTH_SHORT).show();
-
-                                                                        });
-
-
-
-
-
-
-                                                                // TODO: You can now use this UID to store additional user details in Firestore or Firebase Realtime Database
+                                                    // TODO: You can now use this UID to store additional user details in Firestore or Firebase Realtime Database
 //                                                              Toast.makeText(getActivity(), otp, Toast.LENGTH_SHORT).show();
-                                                                String subject="Enrollment and Credentials as HOD";
-                                                                String context= "Dear "+nameS+"! \nNow enrolled as HOD for Department"+branchS+"\nLogin with this number and OTP: "+otp+"/Please Change your password after Login";
 
-                                                                SMTPMailSender.smtpMailSender(emailIdS,subject,nameS,branchS, otp);
-                                                                Toast.makeText(getActivity(), "Email Sent", Toast.LENGTH_SHORT).show();
 
-                                                                Toast.makeText(getActivity(), "User registered successfully!", Toast.LENGTH_SHORT).show();
 
-                                                                Map<String, Object> userData = new HashMap<>();
-                                                                userData.put("Type", "HOD");
-                                                                // ... add other user data
+                                                    Map<String, Object> userData = new HashMap<>();
+                                                    userData.put("Type", "HOD");
+                                                    // ... add other user data
+                                                    db.collection("Users").document(user.getUid())
+                                                            .set(userData)
+                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                @Override
+                                                                public void onSuccess(Void aVoid) {
+                                                                    Toast.makeText(getActivity(), "User Type set to HOD", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            })
+                                                            .addOnFailureListener(new OnFailureListener() {
+                                                                @Override
+                                                                public void onFailure(@NonNull Exception e) {
+                                                                    Toast.makeText(getActivity(), "Error Setting User Type to HOD", Toast.LENGTH_SHORT).show();
 
-                                                                db.collection("Users").document(user.getUid())
-                                                                        .set(userData)
-                                                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                                            @Override
-                                                                            public void onSuccess(Void aVoid) {
-                                                                                Toast.makeText(getActivity(), "User Type set to HOD", Toast.LENGTH_SHORT).show();
-                                                                            }
-                                                                        })
-                                                                        .addOnFailureListener(new OnFailureListener() {
-                                                                            @Override
-                                                                            public void onFailure(@NonNull Exception e) {
-                                                                                Toast.makeText(getActivity(), "Error Setting User Type to HOD", Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            });
 
-                                                                            }
-                                                                        });
+                                                    Map<String, Object> hod = new HashMap<>();
+                                                    hod.put("Name", nameS);
+                                                    hod.put("Father's Name", fNameS);
+                                                    hod.put("Mother's Name", mNameS);
+                                                    hod.put("Email-ID", emailIdS);
+                                                    hod.put("Phone Number", phoneNumberS);
+                                                    hod.put("State", stateS);
+                                                    hod.put("City", cityS);
+                                                    hod.put("Address", addressS);
+                                                    hod.put("Pin Code", pinCodeS);
+                                                    hod.put("Course", courseS);
+                                                    hod.put("Branch", branchS);
+                                                    hod.put("UserId", userid);
 
-                                                            } else {
-                                                                // Registration failed
-                                                                Toast.makeText(getActivity(), "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                                            }
-                                                        }
-                                                    });
+                                                    db.collection("HODS")
+                                                            .add(hod)
+                                                            .addOnSuccessListener(documentReference -> {
 
-                                        })
-                                        .addOnFailureListener(e -> {
-                                            // Handle the error
-                                            Log.i("data addition", e.toString());
-                                            Toast.makeText(getActivity(), "Error Occured", Toast.LENGTH_SHORT).show();
+
+                                                                Toast.makeText(getActivity(), "HOD Created", Toast.LENGTH_SHORT).show();
+
+                                                            })
+                                                            .addOnFailureListener(e -> {
+                                                                // Handle the error
+                                                                Log.i("data addition", e.toString());
+                                                                Toast.makeText(getActivity(), "Error Occured", Toast.LENGTH_SHORT).show();
+                                                            });
+
+                                                    // Sending Email
+                                                    String subject = "Enrollment and Credentials as HOD";
+                                                    String context = "Dear " + nameS + "! \nNow enrolled as HOD for Department" + branchS + "\nLogin with this number and OTP: " + otp + "/Please Change your password after Login";
+
+                                                    SMTPMailSender.smtpMailSender(emailIdS, subject, nameS, branchS, otp);
+                                                    Toast.makeText(getActivity(), "Email Sent", Toast.LENGTH_SHORT).show();
+
+                                                    Toast.makeText(getActivity(), "User registered successfully!", Toast.LENGTH_SHORT).show();
+
+                                                } else {
+                                                    // Registration failed
+                                                    Toast.makeText(getActivity(), "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
                                         });
 
 
@@ -318,16 +297,15 @@ public class AddHodsFragment extends Fragment {
                     });
 
 
-        }
-        else {
+        } else {
             Toast.makeText(getActivity(), "Empty Field Exists!", Toast.LENGTH_SHORT).show();
         }
 
 
-        }
-
-
     }
+
+
+}
 
 
 
