@@ -105,84 +105,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void loginUser(String username, String password) {
 
-        mAuth.signInWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                if (task.isSuccessful())
-                {
-                    firestore.collection("Users").document(mAuth.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task)
-                        {
-                            if (task.getResult().exists())
-                            {
-                                String a =  task.getResult().getString("Type");
-                                Toast.makeText(MainActivity.this, a+"", Toast.LENGTH_SHORT).show();
-
-                                if(a == "Admin")
-                                {
-                                    Intent i = new Intent(MainActivity.this, MainActivity.class);
-                                    startActivity(i);
-                                    finish();
-                                }
-
-                                else  if (a == "Student")
-                                {
-                                    Intent i = new Intent(MainActivity.this, StudentActivity.class);
-                                    startActivity(i);
-                                    finish();
-                                }
-
-                                else  if (a == "Teacher")
-                                {
-                                    Intent i = new Intent(MainActivity.this, TeacherActivity.class);
-                                    startActivity(i);
-                                    finish();
-                                }
-                            }
-                        }
-                    });
-
-                }
-
-            }
-        });
-
-        if (mAuth.getCurrentUser() != null) {
-            firestore.collection("Users").document(mAuth.getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if (task.getResult().exists()) {
-                        String a = task.getResult().getString("Type");
-                        Toast.makeText(MainActivity.this, a + "", Toast.LENGTH_SHORT).show();
-
-                        if (Objects.equals(a, "Admin")) {
-                            Intent i = new Intent(MainActivity.this, MainActivity.class);
-                            startActivity(i);
-                            finish();
-                        } else if (Objects.equals(a, "Student")) {
-                            Intent i = new Intent(MainActivity.this, StudentActivity.class);
-                            startActivity(i);
-                            finish();
-                        } else if (Objects.equals(a, "Teacher")) {
-                            Intent i = new Intent(MainActivity.this, TeacherActivity.class);
-                            startActivity(i);
-                            finish();
-                        } else if (Objects.equals(a, "HOD")) {
-                            Intent i = new Intent(MainActivity.this, HODActivity.class);
-                            startActivity(i);
-                            finish();
-
-                        }
-                        else
-                        {
-                            Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-            });
-        } else {
             mAuth.signInWithEmailAndPassword(username,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -228,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
-    }
+
 
 
     public void resetPassword(){

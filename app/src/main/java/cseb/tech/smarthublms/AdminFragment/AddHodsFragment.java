@@ -229,7 +229,8 @@ public class AddHodsFragment extends Fragment {
                                 hod.put("Pin Code", pinCodeS);
                                 hod.put("Course", courseS);
                                 hod.put("Branch", branchS);
-//                                hod.put("UserId",userID);
+
+
 
                                 db.collection("HODS")
                                         .add(hod)
@@ -246,6 +247,25 @@ public class AddHodsFragment extends Fragment {
                                                                 // User registered successfully
                                                                 FirebaseUser user = mAuth.getCurrentUser();
                                                                 userid= user.getUid();
+
+
+                                                            // Adding UserId in Hod
+                                                              //  Map<String, Object> hod = new HashMap<>();
+                                                                hod.put("UserId",userid);
+
+                                                                db.collection("HODS")
+                                                                        .add(hod)
+                                                                        .addOnSuccessListener(documentReference -> {
+
+                                                                            Toast.makeText(getActivity(), "User Id Stored", Toast.LENGTH_SHORT).show();
+
+                                                                        });
+
+
+
+
+
+
                                                                 // TODO: You can now use this UID to store additional user details in Firestore or Firebase Realtime Database
 //                                                              Toast.makeText(getActivity(), otp, Toast.LENGTH_SHORT).show();
                                                                 String subject="Enrollment and Credentials as HOD";
