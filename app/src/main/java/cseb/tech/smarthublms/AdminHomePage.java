@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import cseb.tech.smarthublms.AdminFragment.AddBranchesFragment;
@@ -24,15 +26,15 @@ public class AdminHomePage extends AppCompatActivity {
     private TextView welcomeAdminName;
 
 
+    private Toolbar appbar;
 
-
-    String Frag;
+    private String Frag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home_page);
-//        appbar=findViewById(R.id.AppBar);
+        appbar=findViewById(R.id.AppBar);
 //        String username = getIntent().getStringExtra("USER_NAME");
 //        db = FirebaseFirestore.getInstance();
 

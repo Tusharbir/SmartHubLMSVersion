@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/HODhome"
+        android:icon="@drawable/home"
+        android:title="Home" />
+    <item
+        android:id="@+id/addTeacher"
+        android:icon="@drawable/teacher_icon"
+        android:title="Add Teacher" />
+
+
+    <item
+        android:id="@+id/assignIncharge"
+        android:icon="@drawable/teacher_admin_icon"
+        android:title="Class Incharges" />
+
+    <item
+        android:id="@+id/addStudents"
+        android:icon="@drawable/student_icon"
+        android:title="Add Students" />
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/logout"
+        android:title="Logout" />
+</menu>
