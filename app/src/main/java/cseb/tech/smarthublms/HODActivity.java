@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -41,16 +42,21 @@ public class HODActivity extends AppCompatActivity {
                 int itemid = item.getItemId();
 
                 if(itemid==R.id.HODhome){
-                    replaceFragment(new HodHomeFragment()); ;
+                    replaceFragment(new HodHomeFragment());
+                    return true;
                 } else if (itemid==R.id.addTeacher) {
                     replaceFragment(new HODAddTeacherFragment());
+                    return true;
                 }
                 else if(itemid==R.id.addStudents){
                     replaceFragment(new HODAddStudentFragment());
+                    return true;
                 } else if (itemid==R.id.assignIncharge) {
                     replaceFragment(new HODAssignClassIncharge());
+                    return true;
                 } else if (itemid==R.id.logout) {
                     LogoutLogic.logoutLogic(HODActivity.this);
+                    return true;
                 }
 
 
@@ -64,6 +70,9 @@ public class HODActivity extends AppCompatActivity {
     }
 
     private void replaceFragment(Fragment fragment){
-        getSupportFragmentManager().beginTransaction().replace(R.id.containerHOD, fragment).commit();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.containerHOD, fragment)
+                .commit();
     }
 }
