@@ -31,7 +31,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.219"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextText"
+                app:layout_constraintTop_toBottomOf="@+id/hodAddTeacherEmailET"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
@@ -44,14 +44,14 @@
                 android:textColor="#000000"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/editTextText"
+                app:layout_constraintBottom_toTopOf="@+id/hodAddTeacherEmailET"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.18"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editTextText6"
+                android:id="@+id/hodAddTeacherNameET"
                 android:layout_width="284dp"
                 android:layout_height="36dp"
                 android:layout_marginTop="60dp"
@@ -81,11 +81,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.221"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextText4"
+                app:layout_constraintTop_toBottomOf="@+id/hodAddTeacherFNameET"
                 app:layout_constraintVertical_bias="0.0" />
 
             <EditText
-                android:id="@+id/editTextText4"
+                android:id="@+id/hodAddTeacherFNameET"
                 android:layout_width="284dp"
                 android:layout_height="36dp"
                 android:layout_marginTop="4dp"
@@ -117,9 +117,14 @@
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
                 android:text="Button"
-                tools:layout_editor_absoluteX="154dp"
-                tools:layout_editor_absoluteY="1060dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.481"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView20"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/textView42"
@@ -146,14 +151,14 @@
                 android:textColor="#000000"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/editTextText6"
+                app:layout_constraintBottom_toTopOf="@+id/hodAddTeacherNameET"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.173"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView42" />
 
             <EditText
-                android:id="@+id/editTextText3"
+                android:id="@+id/hodAddTeacherMNameET"
                 android:layout_width="286dp"
                 android:layout_height="36dp"
                 android:layout_marginTop="4dp"
@@ -162,7 +167,7 @@
                 android:inputType="text"
                 android:text="Name"
                 android:textSize="14sp"
-                app:layout_constraintBottom_toTopOf="@+id/editTextText"
+                app:layout_constraintBottom_toTopOf="@+id/hodAddTeacherEmailET"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.512"
                 app:layout_constraintStart_toStartOf="parent"
@@ -170,7 +175,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <EditText
-                android:id="@+id/editTextText"
+                android:id="@+id/hodAddTeacherEmailET"
                 android:layout_width="284dp"
                 android:layout_height="36dp"
                 android:layout_marginTop="152dp"
@@ -182,10 +187,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+                app:layout_constraintTop_toBottomOf="@+id/hodAddTeacherFNameET" />
 
             <EditText
-                android:id="@+id/editTextPhone"
+                android:id="@+id/hodAddTeacherPhNameET"
                 android:layout_width="283dp"
                 android:layout_height="39dp"
                 android:layout_marginTop="28dp"
@@ -204,16 +209,18 @@
                 android:id="@+id/textView16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="676dp"
+                android:layout_marginTop="540dp"
                 android:fontFamily="times"
                 android:text="ADDRESS DETAILS"
                 android:textColor="#000000"
                 android:textSize="22sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.174"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.252" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -224,7 +231,7 @@
                 android:textColor="#000000"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/editTextText5"
+                app:layout_constraintBottom_toTopOf="@+id/hodAddTeacherStateET"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.168"
                 app:layout_constraintStart_toStartOf="parent"
@@ -232,7 +239,7 @@
                 app:layout_constraintVertical_bias="1.0" />
 
             <EditText
-                android:id="@+id/editTextText5"
+                android:id="@+id/hodAddTeacherStateET"
                 android:layout_width="284dp"
                 android:layout_height="36dp"
                 android:layout_marginBottom="28dp"
@@ -262,7 +269,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
             <EditText
-                android:id="@+id/editTextText7"
+                android:id="@+id/hodAddTeacherCityET"
                 android:layout_width="284dp"
                 android:layout_height="36dp"
                 android:ems="10"
@@ -271,8 +278,111 @@
                 android:text="Name"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.488"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/lato"
+                android:text="Pin Code"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.181"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hodAddTeacherCityET"
+                app:layout_constraintVertical_bias="0.11" />
+
+            <EditText
+                android:id="@+id/hodAddTeacherPinCodeET"
+                android:layout_width="200dp"
+                android:layout_height="39dp"
+                android:ems="10"
+                android:fontFamily="@font/noto_sans"
+                android:inputType="phone"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.293"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="52dp"
+                android:fontFamily="times"
+                android:text="Confirm Branch"
+                android:textColor="#000000"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/hodAddTeacherPinCodeET"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/hodAddTeacherBranchTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:fontFamily="@font/lato"
+                android:text="Branch"
+                android:textColor="#000000"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView28"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/textView28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="81dp"
+                android:fontFamily="@font/lato"
+                android:text="Branch"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirm"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.391"
+                app:layout_constraintStart_toEndOf="@+id/textView28"
+                app:layout_constraintTop_toBottomOf="@+id/textView20"
+                app:layout_constraintVertical_bias="0.355" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="409dp"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="1312dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
