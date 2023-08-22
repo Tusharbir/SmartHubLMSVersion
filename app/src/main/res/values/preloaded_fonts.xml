@@ -2,7 +2,11 @@
 <resources>
     <array name="preloaded_fonts" translatable="false">
         <item>@font/arbutus_slab</item>
+        <item>@font/bree_serif</item>
         <item>@font/dm_serif_display</item>
+        <item>@font/lato</item>
+        <item>@font/lato_thin</item>
+        <item>@font/noto_sans</item>
         <item>@font/playfair_display</item>
         <item>@font/raleway</item>
     </array>
