@@ -117,6 +117,7 @@ public class HODAddTeacherFragment extends Fragment{
 
 
 
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -142,7 +143,9 @@ public class HODAddTeacherFragment extends Fragment{
                         if (task.isSuccessful())
                         {
                             String a = mauth.getUid();
-                            Toast.makeText(getActivity(), ""+a+"s", Toast.LENGTH_SHORT).show();
+                          //  Toast.makeText(getActivity(), ""+a+"s", Toast.LENGTH_SHORT).show();
+
+
 
                             firestore.collection("Users").document(mauth.getUid()).set(v).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
@@ -160,6 +163,7 @@ public class HODAddTeacherFragment extends Fragment{
                                     u.put("City",scity);
                                     u.put("Pincode",spinCode);
                                     u.put("uid",mauth.getUid());
+                                    u.put("Status","Active");
 
                                     firestore.collection("Teacher").document(mauth.getUid()).set(u).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
