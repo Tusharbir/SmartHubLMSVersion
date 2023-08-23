@@ -89,7 +89,7 @@ public class HODAddTeacherFragment extends Fragment{
     Button btn;
 
 
-
+    String  sname,sfName,smName, semailId,sphoneNumber,sstate,scity,spinCode;
 
     
     
@@ -111,16 +111,9 @@ public class HODAddTeacherFragment extends Fragment{
         pinCode = view.findViewById(R.id.hodAddTeacherPinCodeET);
         btn = view.findViewById(R.id.buttonts);
 
-        String  sname,sfName,smName, semailId,sphoneNumber,sstate,scity,spinCode;
 
-        sname = name.getText().toString();
-        sfName = fName.getText().toString();
-        smName= mName.getText().toString();
-        semailId= emailId.getText().toString();
-        sphoneNumber = state.getText().toString();
-        sstate = state.getText().toString();
-        scity  = city.getText().toString();
-        spinCode   = pinCode.getText().toString();
+
+
 
 
 
@@ -128,6 +121,14 @@ public class HODAddTeacherFragment extends Fragment{
             @Override
             public void onClick(View view)
             {
+                sname = name.getText().toString();
+                sfName = fName.getText().toString();
+                smName= mName.getText().toString();
+                semailId= emailId.getText().toString();
+                sphoneNumber = state.getText().toString();
+                sstate = state.getText().toString();
+                scity  = city.getText().toString();
+                spinCode   = pinCode.getText().toString();
                 HashMap<String,String> v = new HashMap<>();
                 v.put("Type","Teacher");
                 FirebaseAuth mauth;
@@ -135,34 +136,42 @@ public class HODAddTeacherFragment extends Fragment{
 
                 mauth.createUserWithEmailAndPassword(semailId,"1234567").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
+
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        firestore.collection("Users").document(mauth.getCurrentUser().toString()).set(v).addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task)
-                            {
+                        if (task.isSuccessful())
+                        {
+                            String a = mauth.getUid();
+                            Toast.makeText(getActivity(), ""+a+"s", Toast.LENGTH_SHORT).show();
+
+                            firestore.collection("Users").document(mauth.getUid()).set(v).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task)
+                                {
 
 
-                                HashMap<String,String> u = new HashMap<>();
-                                u.put("Name",sname);
-                                u.put("Fname",sfName);
-                                u.put("Mname",smName);
-                                u.put("Email",semailId);
-                                u.put("Pnumber",sphoneNumber);
-                                u.put("State",sstate);
-                                u.put("City",scity);
-                                u.put("Pincode",spinCode);
-                                u.put("uid",mauth.getUid());
+                                    HashMap<String,String> u = new HashMap<>();
+                                    u.put("Name",sname);
+                                    u.put("Fname",sfName);
+                                    u.put("Mname",smName);
+                                    u.put("Email",semailId);
+                                    u.put("Pnumber",sphoneNumber);
+                                    u.put("State",sstate);
+                                    u.put("City",scity);
+                                    u.put("Pincode",spinCode);
+                                    u.put("uid",mauth.getUid());
 
-                                firestore.collection("Teacher").document(mauth.getUid()).set(u).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task)
-                                    {
-                                        Toast.makeText(getActivity(), "Teacher Created", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-                        });
+                                    firestore.collection("Teacher").document(mauth.getUid()).set(u).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task)
+                                        {
+                                            Toast.makeText(getActivity(), "Teacher Created", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+                                }
+                            });
+                        }
+
 
                     }
                 });

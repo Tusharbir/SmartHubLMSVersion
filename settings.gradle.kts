@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "SmartHub LMS"
 include(":app")
+include(":Application")
