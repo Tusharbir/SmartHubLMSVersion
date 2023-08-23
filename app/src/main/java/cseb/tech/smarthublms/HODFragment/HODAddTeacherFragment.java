@@ -1,13 +1,25 @@
 package cseb.tech.smarthublms.HODFragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
 
 import cseb.tech.smarthublms.R;
 
@@ -70,16 +82,98 @@ import cseb.tech.smarthublms.R;
 public class HODAddTeacherFragment extends Fragment{
 
 
-    private EditText name,fName,mName, emailId,phoneNumber,state,city,address,pinCode;
+
+    FirebaseFirestore firestore;
+
+    private EditText name,fName,mName, emailId,phoneNumber,state,city,pinCode;
+    Button btn;
+
+
+
+
     
     
-    public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    @SuppressLint("MissingInflatedId")
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         
         View view = inflater.inflate(R.layout.fragment_hod_add_teacher, container, false);
-        
 
-        
+        firestore = FirebaseFirestore.getInstance();
+
+
+        name = view.findViewById(R.id.hodAddTeacherNameET);//hodAddTeacherNameET
+        fName = view.findViewById(R.id.hodAddTeacherFNameET);
+        mName = view.findViewById(R.id.hodAddTeacherMNameET);
+        emailId = view.findViewById(R.id.hodAddTeacherEmailET);
+        phoneNumber = view.findViewById(R.id.hodAddTeacherPhNameET);
+        state = view.findViewById(R.id.hodAddTeacherStateET);
+        city = view.findViewById(R.id.hodAddTeacherCityET);
+        pinCode = view.findViewById(R.id.hodAddTeacherPinCodeET);
+        btn = view.findViewById(R.id.buttonts);
+
+        String  sname,sfName,smName, semailId,sphoneNumber,sstate,scity,spinCode;
+
+        sname = name.getText().toString();
+        sfName = fName.getText().toString();
+        smName= mName.getText().toString();
+        semailId= emailId.getText().toString();
+        sphoneNumber = state.getText().toString();
+        sstate = state.getText().toString();
+        scity  = city.getText().toString();
+        spinCode   = pinCode.getText().toString();
+
+
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                HashMap<String,String> v = new HashMap<>();
+                v.put("Type","Teacher");
+                FirebaseAuth mauth;
+                mauth = FirebaseAuth.getInstance();
+
+                mauth.createUserWithEmailAndPassword(semailId,"1234567").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        firestore.collection("Users").document(mauth.getCurrentUser().toString()).set(v).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task)
+                            {
+
+
+                                HashMap<String,String> u = new HashMap<>();
+                                u.put("Name",sname);
+                                u.put("Fname",sfName);
+                                u.put("Mname",smName);
+                                u.put("Email",semailId);
+                                u.put("Pnumber",sphoneNumber);
+                                u.put("State",sstate);
+                                u.put("City",scity);
+                                u.put("Pincode",spinCode);
+                                u.put("uid",mauth.getUid());
+
+                                firestore.collection("Teacher").document(mauth.getUid()).set(u).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task)
+                                    {
+                                        Toast.makeText(getActivity(), "Teacher Created", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        });
+
+                    }
+                });
+
+
+            }
+        });
+
+
         return view;
+
     }
     
     

@@ -114,7 +114,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/buttonts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="100dp"
@@ -338,7 +338,7 @@
                 android:text="Branch"
                 android:textColor="#000000"
                 android:textSize="16dp"
-                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintBottom_toTopOf="@+id/buttonts"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="parent"
@@ -356,7 +356,7 @@
                 android:textColor="#000000"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintBottom_toTopOf="@+id/buttonts"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
                 app:layout_constraintStart_toStartOf="parent"
@@ -369,7 +369,7 @@
                 android:text="Confirm"
                 android:textSize="20dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/button"
+                app:layout_constraintBottom_toTopOf="@+id/buttonts"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.391"
                 app:layout_constraintStart_toEndOf="@+id/textView28"
