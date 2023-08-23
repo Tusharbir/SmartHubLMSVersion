@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import cseb.tech.smarthublms.AdminFragment.HomeFragment;
+import cseb.tech.smarthublms.TeacherFragment.Teacher_Profile_Fragment;
 
 public class TeacherActivity extends AppCompatActivity {
 
@@ -88,7 +89,7 @@ public class TeacherActivity extends AppCompatActivity {
                 else if (itemId == R.id.profile) {
                     if (Frag != "Profile")
                     {
-                        //   replacefragment(new HomeFragment());
+                           replacefragment(new Teacher_Profile_Fragment());
                         Frag = "Profile";
                     }
                     else {
