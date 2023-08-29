@@ -2,65 +2,154 @@ package cseb.tech.smarthublms.HODFragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import cseb.tech.smarthublms.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link HODAddStudentFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class HODAddStudentFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public HODAddStudentFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HODAddStudentFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HODAddStudentFragment newInstance(String param1, String param2) {
-        HODAddStudentFragment fragment = new HODAddStudentFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    Button signup;
+    EditText email , pass , name , roll , mobile,branch,section,sbatch,ebatch,group;
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+
+
+    FirebaseAuth mAuth;
+    String a ;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hod_add_student, container, false);
+        View view =  inflater.inflate(R.layout.fragment_hod_add_student, container, false);
+
+        mAuth = FirebaseAuth.getInstance();
+        email = view.findViewById(R.id.signup_email);
+        pass = view.findViewById(R.id.signup_password);
+        name = view.findViewById(R.id.signup_name);
+        roll = view.findViewById(R.id.signup_rollno);
+        mobile = view.findViewById(R.id.signup_mobile);
+        branch = view.findViewById(R.id.signup_branch);
+        section = view.findViewById(R.id.signup_leet);
+        sbatch = view.findViewById(R.id.signup_sbatch);
+        signup = view.findViewById(R.id.ssignup_btn);
+        group = view.findViewById(R.id.signup_group);
+        ebatch  = view.findViewById(R.id.signup_ebatch);
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                String emails , passs ,names , rolls , mobiles, branchs , leets, batchs , groups , ebatchs;
+                emails = email.getText().toString();
+                passs = pass.getText().toString();
+                names = name.getText().toString();
+                rolls = roll.getText().toString();
+                mobiles = mobile.getText().toString();
+                branchs = branch.getText().toString();
+                leets =  section.getText().toString();
+                batchs = sbatch.getText().toString();
+                groups = group.getText().toString();
+                ebatchs =  ebatch.getText().toString();
+
+
+                signup(emails,passs,names,rolls,mobiles,branchs,leets,batchs, ebatchs ,groups);
+
+            }
+        });
+
+
+
+        return  view;
+
+    }
+
+    public  void signup(String email , String pass,String names,String rolls , String mobiles, String branches   ,String sections ,String batchs  ,String batchse ,String fgroups )
+    {
+
+
+        Map<String,String> v = new HashMap<>();
+
+        v.put("Email",email);
+        v.put("Pass",pass);
+        v.put("Name",names);
+        v.put("Rollno",rolls);
+        v.put("Phone",mobiles);
+        v.put("Branch",branches);
+        v.put("Section",sections);
+        v.put("Batchs",batchs);
+        v.put("Batche",batchse);
+        v.put("Type","Student");
+        v.put("Group",fgroups);
+       // v.put("Link","https://firebasestorage.googleapis.com/v0/b/agcd-5e575.appspot.com/o/Demo%2Fdp.jpg?alt=media&token=8c87322d-481e-437b-a18c-8933727ffec3");
+
+
+
+
+        mAuth.createUserWithEmailAndPassword(email,pass)
+                .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task)
+                    {
+                        if (task.isSuccessful())
+                        {
+                            a = mAuth.getUid();
+                            //  Toast.makeText(getActivity(),  "aaa va meri id "+ a, Toast.LENGTH_SHORT).show();
+
+
+                            FirebaseFirestore.getInstance().collection("Student").document(a).set(v).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task)
+                                {
+                                    HashMap<String,String> u = new HashMap<>();
+                                    u.put("Type","Student");
+                                    Toast.makeText(getActivity(), "Data Stored", Toast.LENGTH_SHORT).show();
+
+                                    FirebaseFirestore.getInstance().collection("Users").document(a).set(u).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(getActivity(), "Type Created", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
+                                }
+                            });
+
+                            //Toast.makeText(getActivity(), "aaa va meri id "+a, /.LENGTH_SHORT).show();
+
+
+                        }
+                    }
+                });
+
+
+
     }
 }
