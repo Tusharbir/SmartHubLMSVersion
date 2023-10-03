@@ -3,7 +3,6 @@ package cseb.tech.smarthublms.HODFragment;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -18,9 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,7 +38,7 @@ public class HODAddStudentFragment extends Fragment {
 
 
     FirebaseAuth mAuth;
-    String a ;
+
 
 
     @Override
@@ -116,37 +113,64 @@ public class HODAddStudentFragment extends Fragment {
         mAuth.createUserWithEmailAndPassword(email,pass)
                 .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task)
-                    {
-                        if (task.isSuccessful())
-                        {
-                            a = mAuth.getUid();
-                            //  Toast.makeText(getActivity(),  "aaa va meri id "+ a, Toast.LENGTH_SHORT).show();
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            final String uid = mAuth.getUid();
+                            final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-
-                            FirebaseFirestore.getInstance().collection("Student").document(a).set(v).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            // Check if the user document exists in the "Student" collection
+                            db.collection("Student").document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                 @Override
-                                public void onComplete(@NonNull Task<Void> task)
-                                {
-                                    HashMap<String,String> u = new HashMap<>();
-                                    u.put("Type","Student");
-                                    Toast.makeText(getActivity(), "Data Stored", Toast.LENGTH_SHORT).show();
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        DocumentSnapshot document = task.getResult();
+                                        if (document.exists()) {
+                                            // User document exists, show a toast indicating that the user already exists
+                                            Toast.makeText(getActivity(), "User already exists", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            // User document doesn't exist, add data to Firestore
+                                            HashMap<String, String> userData = new HashMap<>();
+                                            userData.put("Type", "Student");
 
-                                    FirebaseFirestore.getInstance().collection("Users").document(a).set(u).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
-                                            Toast.makeText(getActivity(), "Type Created", Toast.LENGTH_SHORT).show();
+                                            // Add data to the "Student" collection
+                                            db.collection("Student").document(uid).set(userData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful()) {
+                                                        // Data added successfully
+                                                        Toast.makeText(getActivity(), "Student Data has been added", Toast.LENGTH_SHORT).show();
+
+                                                        // Add user type data to the "Users" collection
+//                                                        HashMap<String, String> userTypeData = new HashMap<>();
+//                                                        userTypeData.put("Type", "Student");
+
+                                                        db.collection("Users").document(uid).set(v).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                if (task.isSuccessful()) {
+                                                                    // User type data added successfully
+                                                                    Toast.makeText(getActivity(), "Type Created", Toast.LENGTH_SHORT).show();
+                                                                } else {
+                                                                    // Handle errors for adding user type data
+                                                                    Toast.makeText(getActivity(),"An unexpected error occured ",Toast.LENGTH_SHORT).show();
+                                                                }
+                                                            }
+                                                        });
+                                                    } else {
+                                                        // errors
+                                                        Toast.makeText(getActivity(),"An unexpected error occured",Toast.LENGTH_SHORT).show();
+                                                    }
+                                                }
+                                            });
                                         }
-                                    });
-
+                                    } else {
+                                        Toast.makeText(getActivity(),"An unexpected error occured",Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             });
-
-                            //Toast.makeText(getActivity(), "aaa va meri id "+a, /.LENGTH_SHORT).show();
-
-
                         }
                     }
+
                 });
 
 
