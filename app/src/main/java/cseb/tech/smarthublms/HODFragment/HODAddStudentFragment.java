@@ -133,23 +133,22 @@ public class HODAddStudentFragment extends Fragment {
                                             userData.put("Type", "Student");
 
                                             // Add data to the "Student" collection
-                                            db.collection("Student").document(uid).set(v).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            db.collection("Users").document(uid).set(userData).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if (task.isSuccessful()) {
                                                         // Data added successfully
-                                                        Toast.makeText(getActivity(), "Student Data has been added", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getActivity(), "Type Created", Toast.LENGTH_SHORT).show();
 
                                                         // Add user type data to the "Users" collection
                                                         HashMap<String, String> userTypeData = new HashMap<>();
                                                         userTypeData.put("Type", "Student");
-
-                                                        db.collection("Users").document(uid).set(userData).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        db.collection("Student").document(uid).set(v).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                             @Override
                                                             public void onComplete(@NonNull Task<Void> task) {
                                                                 if (task.isSuccessful()) {
                                                                     // User type data added successfully
-                                                                    Toast.makeText(getActivity(), "Type Created", Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(getActivity(), "Student Data has been added", Toast.LENGTH_SHORT).show();
                                                                 } else {
                                                                     // Handle errors for adding user type data
                                                                     Toast.makeText(getActivity(),"An unexpected error occured ",Toast.LENGTH_SHORT).show();
