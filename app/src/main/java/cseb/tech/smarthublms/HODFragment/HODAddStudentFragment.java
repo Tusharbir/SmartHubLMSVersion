@@ -40,7 +40,7 @@ public class HODAddStudentFragment extends Fragment {
         // Required empty public constructor
     }
 
-    Button signup;
+    private Button signup;
     EditText email  , name , roll , mobile,branch,section,sbatch,ebatch,group;
 
 
@@ -86,9 +86,6 @@ public class HODAddStudentFragment extends Fragment {
             @Override
             public void onClick(View view)
             {
-
-
-
                 FirebaseAuth mAuth = FirebaseAuth.getInstance();
                 String currentUserUID = mAuth.getCurrentUser().getUid();
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -99,9 +96,7 @@ public class HODAddStudentFragment extends Fragment {
                             DocumentSnapshot document = task.getResult();
                             if (document != null && document.exists()) {
 
-
                                 // Now you have the branch of the currently logged-in HOD.
-
                                 String emails ,names , rolls , mobiles, branchs , leets, batchs , groups , ebatchs;
                                 emails = email.getText().toString();
                                 branchs = document.getString("Branch");
@@ -113,7 +108,6 @@ public class HODAddStudentFragment extends Fragment {
 
                                 //Checking thee leet status and setting the batch start and end
                                 batchs = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-
                                 int endYear;
                                 if(isLeet) {
                                     endYear = Integer.parseInt(batchs) + 3;
@@ -121,15 +115,12 @@ public class HODAddStudentFragment extends Fragment {
                                     endYear = Integer.parseInt(batchs) + 4;
                                 }
                                 ebatchs = String.valueOf(endYear);
-
-
                                 groups = group.getText().toString();
-
-
                                 // If you're calling a method after getting branchs, you'd have to call it here, inside this callback.
                                 signup(emails,names,rolls,mobiles,branchs,leetStatus,batchs, ebatchs ,groups);
 
-                            } else {
+                            } else
+                            {
                                 Toast.makeText(getActivity(), "Record already exists!", Toast.LENGTH_SHORT).show();
                             }
                         } else {

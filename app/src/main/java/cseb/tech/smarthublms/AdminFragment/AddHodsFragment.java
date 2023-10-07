@@ -229,7 +229,7 @@ public class AddHodsFragment extends Fragment {
                                                     Map<String, Object> userData = new HashMap<>();
                                                     userData.put("Type", "HOD");
                                                     // ... add other user data
-                                                    db.collection("Users").document(user.getUid())
+                                                    db.collection("Users").document(userid)
                                                             .set(userData)
                                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                 @Override
@@ -259,8 +259,8 @@ public class AddHodsFragment extends Fragment {
                                                     hod.put("Branch", branchS);
                                                     hod.put("UserId", userid);
 
-                                                    db.collection("HODS")
-                                                            .add(hod)
+                                                    db.collection("HODS").document(userid)
+                                                            .set(hod)
                                                             .addOnSuccessListener(documentReference -> {
 
 

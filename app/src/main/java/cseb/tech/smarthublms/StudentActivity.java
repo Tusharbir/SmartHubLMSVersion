@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import cseb.tech.smarthublms.AdminFragment.HomeFragment;
+import cseb.tech.smarthublms.StudentFragment.Student_Profile_Fragment;
 
 public class StudentActivity extends AppCompatActivity {
 
@@ -87,7 +88,7 @@ public class StudentActivity extends AppCompatActivity {
                 else if (itemId == R.id.profile_s) {
                     if (Frag != "Profile")
                     {
-                        //   replacefragment(new HomeFragment());
+                           replacefragment(new Student_Profile_Fragment());
                         Frag = "Profile";
                     }
                     else {
@@ -101,7 +102,7 @@ public class StudentActivity extends AppCompatActivity {
                         Frag = "abc";
                     }
                     else {
-                        Toast.makeText(StudentActivity.this, "khulya va pra", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(StudentActivity.this, "khulya va pra", Toast.LENGTH_SHORT).show();
                     }
                     return true;
                 }

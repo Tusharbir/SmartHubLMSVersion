@@ -28,17 +28,20 @@ public class Student_Profile_Fragment extends Fragment {
     //Constructor
     }
     // Firestore instance
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+     FirebaseFirestore db = FirebaseFirestore.getInstance();
+     FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     // UI elements
-    private TextView tvBatchStart,tvBatchEnd, tvBranch, tvEmail, tvGroup, tvName, tvPassword, tvPhoneNumber, tvRoll, tvSection, tvType;
+     TextView tvBatchStart,tvBatchEnd, tvBranch, tvEmail, tvGroup, tvName, tvPassword, tvPhoneNumber, tvRoll, tvSection, tvType;
+
+
 
     @Nullable
     @Override
     public View onCreateView( LayoutInflater inflater,
                               ViewGroup container,
                               Bundle savedInstanceState) {
+        Log.i("PEhla AA chlya","Chlpya");
         View view = inflater.inflate(R.layout.fragment_student__profile_, container, false);
 
         // Initialize views
@@ -54,18 +57,18 @@ public class Student_Profile_Fragment extends Fragment {
         tvSection = view.findViewById(R.id.tv_section);
         tvType = view.findViewById(R.id.tv_type);
         fetchStudentDetails();
-        Log.i("PEhla AA chlya","Chlpya");
+
 
         return view;
     }
 
-    private void fetchStudentDetails() {
+    public void fetchStudentDetails() {
         String userId = mAuth.getCurrentUser().getUid();
-        Log.i("fetch Details Chlya", userId);
+      //  Log.i("fetch Details Chlya", userId);
 
 
         // Get the current logged-in user ID
-        Log.i("user iud", userId);
+        //Log.i("user iud", userId);
 
         db.collection("Student").document(userId).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -73,13 +76,13 @@ public class Student_Profile_Fragment extends Fragment {
                 if (document.exists()) {
                     Map<String, Object> data = document.getData();
 
-                    tvBatchStart.setText(data.get("Batchs").toString());
+                    tvBatchStart.setText("Batch Start: "+data.get("Batchs").toString());
                     tvBatchEnd.setText("Batch End: " + data.get("Batche").toString());
                     tvBranch.setText("Branch: " + data.get("Branch").toString());
                     tvEmail.setText("Email: " + data.get("Email").toString());
                     tvGroup.setText("Group: " + data.get("Group").toString());
                     tvName.setText("Name: " + data.get("Name").toString());
-                    tvPassword.setText("Password: " + data.get("Password").toString()); // Remember the note on security!
+                 // Remember the note on security!
                     tvPhoneNumber.setText("Phone Number: " + data.get("Phone").toString());
                     tvRoll.setText("Roll: " + data.get("Rollno").toString());
                     tvSection.setText("Section: " + data.get("Section").toString());
