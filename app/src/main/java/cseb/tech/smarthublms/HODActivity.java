@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import cseb.tech.smarthublms.HODFragment.HODAddStudentFragment;
+import cseb.tech.smarthublms.HODFragment.HODAddSubject;
 import cseb.tech.smarthublms.HODFragment.HODAddTeacherFragment;
 import cseb.tech.smarthublms.HODFragment.HODAssignClassIncharge;
 import cseb.tech.smarthublms.HODFragment.HodHomeFragment;
@@ -52,12 +53,14 @@ public class HODActivity extends AppCompatActivity {
                     replaceFragment(new HODAddStudentFragment());
                     return true;
                 } else if (itemid==R.id.assignIncharge) {
-                    replaceFragment(new HODAssignClassIncharge());
+                    replaceFragment(new HODAddSubject());
                     return true;
                 } else if (itemid==R.id.logout) {
                     LogoutLogic.logoutLogic(HODActivity.this);
                     return true;
                 }
+
+
 
 
                 return false;
