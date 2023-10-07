@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,9 @@ public class Student_Profile_Fragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView( LayoutInflater inflater,
+                              ViewGroup container,
+                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_student__profile_, container, false);
 
         // Initialize views
@@ -48,12 +51,18 @@ public class Student_Profile_Fragment extends Fragment {
         tvSection = view.findViewById(R.id.tv_section);
         tvType = view.findViewById(R.id.tv_type);
         fetchStudentDetails();
+        Log.i("PEhla AA chlya","Chlpya");
 
         return view;
     }
 
     private void fetchStudentDetails() {
-        String userId = mAuth.getCurrentUser().getUid(); // Get the current logged-in user ID
+        String userId = mAuth.getCurrentUser().getUid();
+        Log.i("fetch Details Chlya", userId);
+
+
+        // Get the current logged-in user ID
+        Log.i("user iud", userId);
 
         db.collection("Student").document(userId).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -61,7 +70,7 @@ public class Student_Profile_Fragment extends Fragment {
                 if (document.exists()) {
                     Map<String, Object> data = document.getData();
 
-                    tvBatchStart.setText("Batch Start: " + data.get("Batchs").toString());
+                    tvBatchStart.setText(data.get("Batchs").toString());
                     tvBatchEnd.setText("Batch End: " + data.get("Batche").toString());
                     tvBranch.setText("Branch: " + data.get("Branch").toString());
                     tvEmail.setText("Email: " + data.get("Email").toString());

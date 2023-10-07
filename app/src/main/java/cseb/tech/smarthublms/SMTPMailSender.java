@@ -24,14 +24,16 @@ public class SMTPMailSender extends AsyncTask<Void,Void,Void> {
     private static String branchS1;
     private static String otp1;
 
+    private static String type1;
+
         @Override
         protected Void doInBackground(Void... voids) {
             try {
                 String htmlContent = "<div style=\"font-family: Arial, sans-serif; padding: 40px 0; background-color: #f7f7f7; width: 100%; height: 100%;\">"
                         + "<div style=\"max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\">"
-                        + "<h2 style=\"color: #333333; border-bottom: 2px solid #eeeeee; padding-bottom: 10px; margin-bottom: 20px;\">Enrollment and Credentials as HOD</h2>"
+                        + "<h2 style=\"color: #333333; border-bottom: 2px solid #eeeeee; padding-bottom: 10px; margin-bottom: 20px;\">Enrollment and Credentials as "+(type1) +"</h2>"
                         + "<p style=\"color: #555555; font-size: 16px; line-height: 1.5; margin-bottom: 20px;\">Dear " + nameS1 + ",</p>"
-                        + "<p style=\"color: #555555; font-size: 16px; line-height: 1.5; margin-bottom: 20px;\">Now enrolled as HOD for Department: " + branchS1 + "</p>"
+                        + "<p style=\"color: #555555; font-size: 16px; line-height: 1.5; margin-bottom: 20px;\">Now enrolled as "+ type1 +" for Department: " + branchS1 + "</p>"
                         + "<p style=\"color: #555555; font-size: 16px; line-height: 1.5; margin-bottom: 20px;\">Login with this email on which you received the message and OTP: " + otp1 + "</p>"
                         + "<p style=\"color: #555555; font-size: 16px; line-height: 1.5; margin-bottom: 20px;\">........................................................................................................</p>"
                         + "<p style=\"color: #555555; font-size: 16px; line-height: 1.5; margin-bottom: 20px;\">Please change your password after login.</p>"
@@ -80,14 +82,14 @@ public class SMTPMailSender extends AsyncTask<Void,Void,Void> {
         // Code to execute after email is sent (e.g., update UI)
     }
 
-    public static void smtpMailSender(String email, String subject, String nameS, String branchS, String otp){
+    public static void smtpMailSender(String email, String subject, String nameS, String branchS, String otp,String type){
 
            email1=email;
            subject1=subject;
            nameS1=nameS;
            branchS1=branchS;
            otp1=otp;
-
+           type1=type;
 
 
 

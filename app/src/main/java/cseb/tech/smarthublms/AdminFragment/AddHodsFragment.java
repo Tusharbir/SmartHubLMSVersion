@@ -276,8 +276,8 @@ public class AddHodsFragment extends Fragment {
                                                     // Sending Email
                                                     String subject = "Enrollment and Credentials as HOD";
                                                     String context = "Dear " + nameS + "! \nNow enrolled as HOD for Department" + branchS + "\nLogin with this number and OTP: " + otp + "/Please Change your password after Login";
-
-                                                    SMTPMailSender.smtpMailSender(emailIdS, subject, nameS, branchS, otp);
+                                                    String type="HOD";
+                                                    SMTPMailSender.smtpMailSender(emailIdS, subject, nameS, branchS, otp,type);
                                                     Toast.makeText(getActivity(), "Email Sent", Toast.LENGTH_SHORT).show();
 
                                                     Toast.makeText(getActivity(), "User registered successfully!", Toast.LENGTH_SHORT).show();

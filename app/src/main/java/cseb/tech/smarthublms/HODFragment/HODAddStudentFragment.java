@@ -8,8 +8,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,10 +22,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import cseb.tech.smarthublms.R;
+import cseb.tech.smarthublms.OtpGenerator;
+import cseb.tech.smarthublms.R;
+import cseb.tech.smarthublms.SMTPMailSender;
 
 
 public class HODAddStudentFragment extends Fragment {
@@ -33,7 +41,8 @@ public class HODAddStudentFragment extends Fragment {
     }
 
     Button signup;
-    EditText email , pass , name , roll , mobile,branch,section,sbatch,ebatch,group;
+    EditText email  , name , roll , mobile,branch,section,sbatch,ebatch,group;
+
 
 
 
@@ -49,68 +58,126 @@ public class HODAddStudentFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         email = view.findViewById(R.id.signup_email);
-        pass = view.findViewById(R.id.signup_password);
+//        pass = view.findViewById(R.id.signup_password);
         name = view.findViewById(R.id.signup_name);
         roll = view.findViewById(R.id.signup_rollno);
         mobile = view.findViewById(R.id.signup_mobile);
         branch = view.findViewById(R.id.signup_branch);
         section = view.findViewById(R.id.signup_leet);
-        sbatch = view.findViewById(R.id.signup_sbatch);
+//        sbatch = view.findViewById(R.id.signup_sbatch);
         signup = view.findViewById(R.id.ssignup_btn);
         group = view.findViewById(R.id.signup_group);
-        ebatch  = view.findViewById(R.id.signup_ebatch);
+//        ebatch  = view.findViewById(R.id.signup_ebatch);
+        //Leet Checkbox
+        CheckBox checkBoxLeet = view.findViewById(R.id.checkbox_leet);
+//        Spinner
+        Spinner sbatchSpinner = view.findViewById(R.id.spinner_sbatch);
+        ArrayList<String> years = new ArrayList<>();
+        for (int i = 2020; i <= Calendar.getInstance().get(Calendar.YEAR); i++) {
+            years.add(String.valueOf(i));
+        }
+
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, years);
+        sbatchSpinner.setAdapter(spinnerAdapter);
+
+
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                String emails , passs ,names , rolls , mobiles, branchs , leets, batchs , groups , ebatchs;
-                emails = email.getText().toString();
-                passs = pass.getText().toString();
-                names = name.getText().toString();
-                rolls = roll.getText().toString();
-                mobiles = mobile.getText().toString();
-                branchs = branch.getText().toString();
-                leets =  section.getText().toString();
-                batchs = sbatch.getText().toString();
-                groups = group.getText().toString();
-                ebatchs =  ebatch.getText().toString();
 
 
-                signup(emails,passs,names,rolls,mobiles,branchs,leets,batchs, ebatchs ,groups);
 
+                FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                String currentUserUID = mAuth.getCurrentUser().getUid();
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("HODS").document(currentUserUID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document != null && document.exists()) {
+
+
+                                // Now you have the branch of the currently logged-in HOD.
+
+                                String emails ,names , rolls , mobiles, branchs , leets, batchs , groups , ebatchs;
+                                emails = email.getText().toString();
+                                branchs = document.getString("Branch");
+                                names = name.getText().toString();
+                                rolls = roll.getText().toString();
+                                mobiles = mobile.getText().toString();
+                                boolean isLeet = checkBoxLeet.isChecked();
+                                String leetStatus = isLeet ? "Yes" : "No";
+
+                                //Checking thee leet status and setting the batch start and end
+                                batchs = sbatchSpinner.getSelectedItem().toString();
+
+                                int endYear;
+                                if(isLeet) {
+                                    endYear = Integer.parseInt(batchs) + 3;
+                                } else {
+                                    endYear = Integer.parseInt(batchs) + 4;
+                                }
+                                ebatchs = String.valueOf(endYear);
+
+
+                                groups = group.getText().toString();
+
+
+                                // If you're calling a method after getting branchs, you'd have to call it here, inside this callback.
+                                signup(emails,names,rolls,mobiles,branchs,leetStatus,batchs, ebatchs ,groups);
+
+                            } else {
+                                Toast.makeText(getActivity(), "No document found", Toast.LENGTH_SHORT).show();
+                            }
+                        } else {
+                            Toast.makeText(getActivity(), "Error fetching document", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
             }
         });
-
-
-
         return  view;
 
     }
 
-    public  void signup(String email , String pass,String names,String rolls , String mobiles, String branches   ,String sections ,String batchs  ,String batchse ,String fgroups )
+    public  void signup(String email ,String names,String rolls , String mobiles, String branches   ,String sections ,String batchs  ,String batchse ,String fgroups )
     {
 
 
         Map<String,String> v = new HashMap<>();
 
-        v.put("Email",email);
-        v.put("Pass",pass);
-        v.put("Name",names);
-        v.put("Rollno",rolls);
-        v.put("Phone",mobiles);
-        v.put("Branch",branches);
-        v.put("Section",sections);
-        v.put("Batchs",batchs);
-        v.put("Batche",batchse);
-        v.put("Type","Student");
-        v.put("Group",fgroups);
-       // v.put("Link","https://firebasestorage.googleapis.com/v0/b/agcd-5e575.appspot.com/o/Demo%2Fdp.jpg?alt=media&token=8c87322d-481e-437b-a18c-8933727ffec3");
+
+        v.put("Email", email);
+        v.put("Name", names);
+        v.put("Rollno", rolls);
+        v.put("Phone", mobiles);
+        v.put("Branch", branches);
+        v.put("Section", sections);
+        v.put("Batchs", batchs);
+        v.put("Batche", batchse);
+        v.put("Type", "Student");
+        v.put("Group", fgroups);
+
+        // Generating a simple OTP. You can improve upon this method.
+        String nameS1 = names;
+        String branchS1 = branches;
+        String otp1 = String.format("%06d", (int) (Math.random() * 1000000));
+        String type ="a Student";
+        String emailIdS = email;
+
+        String subject = "Enrollment and Credentials as HOD";
+        String context = "Dear " + nameS1 + "! \nNow enrolled as "+ type + "for Department " + branchS1 + "\nLogin with this number and OTP: " + otp1 + ". Please Change your password after Login";
+
+        SMTPMailSender.smtpMailSender(emailIdS, subject, nameS1, branchS1, otp1,type);
+        Toast.makeText(getActivity(), "Email Sent", Toast.LENGTH_SHORT).show();
 
 
 
 
-        mAuth.createUserWithEmailAndPassword(email,pass)
+        mAuth.createUserWithEmailAndPassword(email,otp1)
                 .addOnCompleteListener( new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -140,15 +207,14 @@ public class HODAddStudentFragment extends Fragment {
                                                         // Data added successfully
                                                         Toast.makeText(getActivity(), "Type Created", Toast.LENGTH_SHORT).show();
 
-                                                        // Add user type data to the "Users" collection
-                                                        HashMap<String, String> userTypeData = new HashMap<>();
-                                                        userTypeData.put("Type", "Student");
+
                                                         db.collection("Student").document(uid).set(v).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                             @Override
                                                             public void onComplete(@NonNull Task<Void> task) {
                                                                 if (task.isSuccessful()) {
-                                                                    // User type data added successfully
-                                                                    Toast.makeText(getActivity(), "Student Data has been added", Toast.LENGTH_SHORT).show();
+
+                                                                    Toast.makeText(getActivity(), "User registered successfully!", Toast.LENGTH_SHORT).show();
+
                                                                 } else {
                                                                     // Handle errors for adding user type data
                                                                     Toast.makeText(getActivity(),"An unexpected error occured ",Toast.LENGTH_SHORT).show();
