@@ -24,6 +24,9 @@ import cseb.tech.smarthublms.R;
 
 public class Student_Profile_Fragment extends Fragment {
 
+    public Student_Profile_Fragment(){
+    //Constructor
+    }
     // Firestore instance
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();

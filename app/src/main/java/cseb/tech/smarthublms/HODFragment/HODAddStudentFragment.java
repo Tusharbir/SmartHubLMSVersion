@@ -62,7 +62,7 @@ public class HODAddStudentFragment extends Fragment {
         name = view.findViewById(R.id.signup_name);
         roll = view.findViewById(R.id.signup_rollno);
         mobile = view.findViewById(R.id.signup_mobile);
-        branch = view.findViewById(R.id.signup_branch);
+//        branch = view.findViewById(R.id.signup_branch);
         section = view.findViewById(R.id.signup_leet);
 //        sbatch = view.findViewById(R.id.signup_sbatch);
         signup = view.findViewById(R.id.ssignup_btn);
@@ -70,15 +70,15 @@ public class HODAddStudentFragment extends Fragment {
 //        ebatch  = view.findViewById(R.id.signup_ebatch);
         //Leet Checkbox
         CheckBox checkBoxLeet = view.findViewById(R.id.checkbox_leet);
-//        Spinner
-        Spinner sbatchSpinner = view.findViewById(R.id.spinner_sbatch);
-        ArrayList<String> years = new ArrayList<>();
-        for (int i = 2020; i <= Calendar.getInstance().get(Calendar.YEAR); i++) {
-            years.add(String.valueOf(i));
-        }
+////        Spinner
+//        Spinner sbatchSpinner = view.findViewById(R.id.spinner_sbatch);
+//        ArrayList<String> years = new ArrayList<>();
+//        for (int i = 2020; i <= Calendar.getInstance().get(Calendar.YEAR); i++) {
+//            years.add(String.valueOf(i));
+//        }
 
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, years);
-        sbatchSpinner.setAdapter(spinnerAdapter);
+//        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, years);
+//        sbatchSpinner.setAdapter(spinnerAdapter);
 
 
 
@@ -112,7 +112,7 @@ public class HODAddStudentFragment extends Fragment {
                                 String leetStatus = isLeet ? "Yes" : "No";
 
                                 //Checking thee leet status and setting the batch start and end
-                                batchs = sbatchSpinner.getSelectedItem().toString();
+                                batchs = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
 
                                 int endYear;
                                 if(isLeet) {
@@ -130,7 +130,7 @@ public class HODAddStudentFragment extends Fragment {
                                 signup(emails,names,rolls,mobiles,branchs,leetStatus,batchs, ebatchs ,groups);
 
                             } else {
-                                Toast.makeText(getActivity(), "No document found", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), "Record already exists!", Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             Toast.makeText(getActivity(), "Error fetching document", Toast.LENGTH_SHORT).show();
