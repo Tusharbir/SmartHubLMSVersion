@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical">
+    <!--    tools:context=".FeedFragment">-->
+
+    <!-- EditText for input post -->
+    <EditText
+        android:id="@+id/inputPost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Write your post here..."
+        android:padding="8dp"
+
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="Submit Post" />
+    <!-- RecyclerView to show the feed -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewFeed"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+</LinearLayout>

@@ -63,7 +63,7 @@ public class StudentActivity extends AppCompatActivity {
                 } else if (itemId == R.id.campusVibess) {
                     if (Frag != "CampusVibe")
                     {
-                        //   replacefragment(new HomeFragment());
+                           replacefragment(new Feed_Fragment());
                         Frag = "CampusVibe";
                     }
                     else {
