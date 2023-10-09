@@ -35,8 +35,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         holder.content.setText(post.getContent());
 
         String postedBy = post.getPostedBy();
-        Log.d("PostAdapter", "Posted by: " + postedBy);  // Debug log
-        holder.tvPostedBy.setText(post.getPostedBy());
+        //Log.d("PostAdapter", "Posted by: " + postedBy);  // Debug log
+        holder.tvPostedBy.setText(post.getPostedBy()+":");
     }
 
     @Override
