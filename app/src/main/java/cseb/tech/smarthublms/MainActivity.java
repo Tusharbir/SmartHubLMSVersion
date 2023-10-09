@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         passText=findViewById(R.id.passwordTv);
         mAuth=FirebaseAuth.getInstance();
 
+
         resetView=findViewById(R.id.resetPassWordTV);
 
         if (mAuth.getCurrentUser() != null) {

@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
+import java.util.Random;
 
 import cseb.tech.smarthublms.R;
 
@@ -135,6 +136,11 @@ public class HODAddTeacherFragment extends Fragment{
                 FirebaseAuth mauth;
                 mauth = FirebaseAuth.getInstance();
 
+                Random rand = new Random();
+
+                // Generate random integers in range 0 to 999
+                int rand_int1 = rand.nextInt(1000);
+
                 mauth.createUserWithEmailAndPassword(semailId,"1234567").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
 
@@ -164,6 +170,7 @@ public class HODAddTeacherFragment extends Fragment{
                                     u.put("Pincode",spinCode);
                                     u.put("uid",mauth.getUid());
                                     u.put("Status","Active");
+                                    u.put("Teach_id", String.valueOf(rand_int1));
 
                                     firestore.collection("Teacher").document(mauth.getUid()).set(u).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
