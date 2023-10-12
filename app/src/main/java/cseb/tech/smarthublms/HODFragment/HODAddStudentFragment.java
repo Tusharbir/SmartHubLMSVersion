@@ -58,28 +58,23 @@ public class HODAddStudentFragment extends Fragment {
 
         mAuth = FirebaseAuth.getInstance();
         email = view.findViewById(R.id.signup_email);
-//        pass = view.findViewById(R.id.signup_password);
         name = view.findViewById(R.id.signup_name);
         roll = view.findViewById(R.id.signup_rollno);
         mobile = view.findViewById(R.id.signup_mobile);
 //        branch = view.findViewById(R.id.signup_branch);
-        section = view.findViewById(R.id.signup_leet);
+        Spinner section = view.findViewById(R.id.signup_leet);
 //        sbatch = view.findViewById(R.id.signup_sbatch);
         signup = view.findViewById(R.id.ssignup_btn);
-        group = view.findViewById(R.id.signup_group);
-//        ebatch  = view.findViewById(R.id.signup_ebatch);
-        //Leet Checkbox
+        Spinner  group = view.findViewById(R.id.signup_group);
+        ArrayAdapter<CharSequence> adapter_1 = ArrayAdapter.createFromResource(getActivity(),
+                R.array.section_spinner, android.R.layout.simple_spinner_item);
+        adapter_1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        section.setAdapter(adapter_1);
+        ArrayAdapter<CharSequence> adapter_2 = ArrayAdapter.createFromResource(getActivity(),
+                R.array.group_spinner, android.R.layout.simple_spinner_item);
+        adapter_2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        group.setAdapter(adapter_2);
         CheckBox checkBoxLeet = view.findViewById(R.id.checkbox_leet);
-////        Spinner
-//        Spinner sbatchSpinner = view.findViewById(R.id.spinner_sbatch);
-//        ArrayList<String> years = new ArrayList<>();
-//        for (int i = 2020; i <= Calendar.getInstance().get(Calendar.YEAR); i++) {
-//            years.add(String.valueOf(i));
-//        }
-
-//        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_spinner_dropdown_item, years);
-//        sbatchSpinner.setAdapter(spinnerAdapter);
-
 
 
         signup.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +92,7 @@ public class HODAddStudentFragment extends Fragment {
                             if (document != null && document.exists()) {
 
                                 // Now you have the branch of the currently logged-in HOD.
-                                String emails ,names , rolls , mobiles, branchs , leets, batchs , groups , ebatchs;
+                                String emails ,names , rolls , mobiles, branchs , leets, batchs , groups , ebatchs,sections;
                                 emails = email.getText().toString();
                                 branchs = document.getString("Branch");
                                 names = name.getText().toString();
@@ -115,9 +110,11 @@ public class HODAddStudentFragment extends Fragment {
                                     endYear = Integer.parseInt(batchs) + 4;
                                 }
                                 ebatchs = String.valueOf(endYear);
-                                groups = group.getText().toString();
+                                groups = group.getSelectedItem().toString();
+                                sections = section.getSelectedItem().toString();
+
                                 // If you're calling a method after getting branchs, you'd have to call it here, inside this callback.
-                                signup(emails,names,rolls,mobiles,branchs,leetStatus,batchs, ebatchs ,groups);
+                                signup(emails,names,rolls,mobiles,branchs,leetStatus,batchs, ebatchs ,groups,sections);
 
                             } else
                             {
@@ -134,7 +131,7 @@ public class HODAddStudentFragment extends Fragment {
 
     }
 
-    public  void signup(String email ,String names,String rolls , String mobiles, String branches   ,String sections ,String batchs  ,String batchse ,String fgroups )
+    public  void signup(String email ,String names,String rolls , String mobiles, String branches   ,String leet ,String batchs  ,String batchse ,String fgroups,String section )
     {
 
 
@@ -146,7 +143,7 @@ public class HODAddStudentFragment extends Fragment {
         v.put("Rollno", rolls);
         v.put("Phone", mobiles);
         v.put("Branch", branches);
-        v.put("Section", sections);
+        v.put("Section", section);
         v.put("Batchs", batchs);
         v.put("Batche", batchse);
         v.put("Type", "Student");

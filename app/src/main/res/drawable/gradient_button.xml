@@ -4,14 +4,12 @@
         <shape android:shape="rectangle">
             <!-- Define the gradient colors and orientation here -->
             <gradient
-                android:startColor="#0C2D40"
+                android:startColor="#145DA0"
                 android:endColor="#145DA0"
                 android:angle="45" />
 
             <!-- Optional: Define a border for the button -->
-            <stroke
-                android:width="1.99dp"
-                android:color="#FFFFFF" />
+
 
             <!-- Optional: Define padding for the button content -->
             <padding

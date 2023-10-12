@@ -8,7 +8,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="671dp"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,70 +20,78 @@
 
             <EditText
                 android:id="@+id/signup_email"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:background="#79C5C3C3"
+                android:layout_width="284dp"
+                android:layout_height="36dp"
                 android:ems="10"
                 android:fontFamily="times"
-                android:hint="Email"
+                android:hint="Enter Email ID"
                 android:inputType="text"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.127"
+                app:layout_constraintHorizontal_bias="0.251"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView30"
                 tools:ignore="MissingConstraints" />
 
+
             <EditText
                 android:id="@+id/signup_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#79C5C3C3"
+                android:layout_width="284dp"
+                android:layout_height="36dp"
                 android:ems="10"
                 android:fontFamily="times"
-                android:hint="Name"
+                android:hint="Enter Name"
                 android:inputType="text"
                 android:textSize="12sp"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="293dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.251"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView31"
+                tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/textView31"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="274dp" />
+                android:fontFamily="times"
+                android:text="Student's Name"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.107"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.354" />
 
             <EditText
                 android:id="@+id/signup_rollno"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#79C5C3C3"
+                android:layout_width="284dp"
+                android:layout_height="36dp"
                 android:ems="10"
                 android:fontFamily="times"
-                android:hint="Roll"
-                android:inputType="number"
+                android:hint="Enter Roll no."
+                android:inputType="text"
                 android:textSize="12sp"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="18dp"
-                tools:layout_editor_absoluteY="241dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.251"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView15"
+                tools:ignore="MissingConstraints" />
 
             <EditText
                 android:id="@+id/signup_mobile"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#79C5C3C3"
+                android:layout_width="284dp"
+                android:layout_height="36dp"
                 android:ems="10"
-                android:fontFamily="times"
-                android:hint="Mobile"
-                android:inputType="number"
+                android:hint="Enter Phone Number with Country Code"
+                android:inputType="text"
+                android:singleLine="false"
                 android:textSize="12sp"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="378dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.251"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView32"
+                tools:ignore="MissingConstraints" />
 
             <CheckBox
                 android:id="@+id/checkbox_leet"
@@ -93,48 +101,60 @@
                 android:fontFamily="times"
                 android:text="Is LEET Student?"
                 android:textSize="12sp"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="418dp" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.148"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.577" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/signup_leet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#79C5C3C3"
+                android:layout_width="284dp"
+                android:layout_height="36dp"
                 android:ems="10"
-                android:fontFamily="times"
-                android:hint="Section"
+                android:hint="Enter Section"
                 android:inputType="text"
+                android:singleLine="false"
                 android:textSize="12sp"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="536dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.251"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView33"
+                tools:ignore="MissingConstraints" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/signup_group"
-                android:layout_width="161dp"
-                android:layout_height="35dp"
-                android:background="#79C5C3C3"
+                android:layout_width="284dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="4dp"
                 android:ems="10"
-                android:fontFamily="times"
-                android:hint="Group"
+                android:hint="Enter Group"
                 android:inputType="text"
+                android:singleLine="false"
                 android:textSize="12sp"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="34dp"
-                tools:layout_editor_absoluteY="639dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.236"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView34"
+                tools:ignore="MissingConstraints" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/ssignup_btn"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_width="337dp"
+                android:layout_height="54dp"
+                android:layout_marginBottom="36dp"
                 android:background="@drawable/gradient_button"
                 android:fontFamily="times"
                 android:text="Add Student"
                 android:textColor="@color/white"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="90dp"
-                tools:layout_editor_absoluteY="713dp" />
+                android:textSize="22sp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/textView22"
@@ -144,30 +164,39 @@
                 android:text="Student Credentials"
                 android:textColor="@color/black"
                 android:textSize="22sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.165"
+                app:layout_constraintHorizontal_bias="0.158"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.042" />
+                app:layout_constraintVertical_bias="0.113" />
 
             <TextView
                 android:id="@+id/textView15"
                 android:layout_width="77dp"
                 android:layout_height="22dp"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="15dp"
-                tools:layout_editor_absoluteY="203dp" />
+                android:background="@color/white"
+                android:fontFamily="times"
+                android:text="Roll No."
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.095"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.261" />
 
             <TextView
                 android:id="@+id/textView30"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="64dp"
-                android:text="TextView"
+                android:fontFamily="times"
+                android:text="Email ID"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.09"
+                app:layout_constraintHorizontal_bias="0.091"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView22"
                 app:layout_constraintVertical_bias="0.0" />
@@ -176,25 +205,43 @@
                 android:id="@+id/textView32"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="41dp"
-                tools:layout_editor_absoluteY="358dp" />
+                android:fontFamily="times"
+                android:text="Phone Number"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.105"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.453" />
 
             <TextView
                 android:id="@+id/textView33"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="32dp"
-                tools:layout_editor_absoluteY="483dp" />
+                android:fontFamily="times"
+                android:text="Section"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.089"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.653" />
 
             <TextView
                 android:id="@+id/textView34"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                tools:layout_editor_absoluteX="34dp"
-                tools:layout_editor_absoluteY="588dp" />
+                android:fontFamily="times"
+                android:text="Group"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.771" />
 
             <!--    <Spinner-->
             <!--        android:id="@+id/spinner_sbatch"-->
