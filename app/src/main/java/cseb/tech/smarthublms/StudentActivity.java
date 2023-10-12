@@ -13,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import cseb.tech.smarthublms.AdminFragment.HomeFragment;
 import cseb.tech.smarthublms.StudentFragment.Student_Profile_Fragment;
+import cseb.tech.smarthublms.StudentFragment.SubjectFragment;
 
 public class StudentActivity extends AppCompatActivity {
 
@@ -50,7 +51,7 @@ public class StudentActivity extends AppCompatActivity {
                 {
                     if (Frag != "Subject")
                     {
-                        // replacefragment(new HomeFragment());
+                        replacefragment(new SubjectFragment());
                         Frag = "Subject";
                     }
                     else {
