@@ -7,8 +7,6 @@
     android:layout_height="?attr/actionBarSize"
     android:background="@color/secondaryColor"
     android:theme="@style/ToolbarTheme"
-
-
     >
 
     <TextView

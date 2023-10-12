@@ -126,6 +126,7 @@ public class Feed_Fragment extends Fragment {
                     public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(getContext(), "Post added successfully!", Toast.LENGTH_SHORT).show();
                         fetchPostsFromFirestore();
+                        inputPost.setText("");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

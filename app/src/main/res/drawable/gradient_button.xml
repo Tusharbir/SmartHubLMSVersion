@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <!-- Define the gradient colors and orientation here -->
+            <gradient
+                android:startColor="#0C2D40"
+                android:endColor="#145DA0"
+                android:angle="45" />
+
+            <!-- Optional: Define a border for the button -->
+            <stroke
+                android:width="2dp"
+                android:color="#FFFFFF" />
+
+            <!-- Optional: Define padding for the button content -->
+            <padding
+                android:left="16dp"
+                android:top="12dp"
+                android:right="16dp"
+                android:bottom="12dp" />
+        </shape>
+    </item>
+</selector>

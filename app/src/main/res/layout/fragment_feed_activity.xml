@@ -18,11 +18,16 @@
 
         android:layout_marginBottom="8dp" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="3dp"
+
         android:layout_gravity="end"
+        android:textColor="@color/white"
+        android:background="@drawable/gradient_button"
         android:text="Submit Post" />
     <!-- RecyclerView to show the feed -->
     <androidx.recyclerview.widget.RecyclerView

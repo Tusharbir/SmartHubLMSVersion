@@ -6,16 +6,48 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/tvPostedBy"
-        android:layout_width="wrap_content"
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Posted By"/>
+
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvPostedBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="Posted By"
+            android:textSize="17dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvTimeStamp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="TextView"
+            android:textSize="10sp" />
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/post_content"
         android:layout_width="206dp"
         android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="14dp"
         tools:text="Sample Post Content" />
+
+    <View
+
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:layout_marginTop="17dp"
+        android:background="@color/black" />
 
 </LinearLayout>

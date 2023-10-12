@@ -1,152 +1,210 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HODFragment.HODAddStudentFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/signup_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#79C5C3C3"
-        android:ems="10"
-        android:hint="email"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/signup_rollno"
-        app:layout_constraintEnd_toEndOf="@+id/textView22"
-        app:layout_constraintStart_toStartOf="@+id/textView22"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/signup_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#79C5C3C3"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/signup_mobile"
-        app:layout_constraintEnd_toEndOf="@+id/signup_rollno"
-        app:layout_constraintStart_toStartOf="@+id/signup_rollno"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        app:layout_constraintVertical_bias="0.806"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/signup_rollno"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#79C5C3C3"
-        android:ems="10"
-        android:hint="Roll"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/signup_name"
-        app:layout_constraintEnd_toEndOf="@+id/signup_email"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/signup_email"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        app:layout_constraintVertical_bias="0.743"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/signup_mobile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#79C5C3C3"
-        android:ems="10"
-        android:hint="Mobile"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/checkbox_leet"
-        app:layout_constraintEnd_toEndOf="@+id/signup_name"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/signup_name"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        app:layout_constraintVertical_bias="0.859"
-        tools:ignore="MissingConstraints" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="times"
+            tools:context=".HODFragment.HODAddStudentFragment">
 
 
-    <CheckBox
-        android:id="@+id/checkbox_leet"
-        android:layout_width="195dp"
-        android:layout_height="30dp"
-        android:layout_alignParentStart="true"
-        android:text="Is LEET Student?"
-        app:layout_constraintBottom_toTopOf="@+id/signup_leet"
-        app:layout_constraintEnd_toEndOf="@+id/signup_mobile"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/signup_mobile"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        app:layout_constraintVertical_bias="0.892" />
+            <EditText
+                android:id="@+id/signup_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="#79C5C3C3"
+                android:ems="10"
+                android:fontFamily="times"
+                android:hint="Email"
+                android:inputType="text"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.127"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView30"
+                tools:ignore="MissingConstraints" />
 
-    <EditText
-        android:id="@+id/signup_leet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#79C5C3C3"
-        android:ems="10"
-        android:hint="Section"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/signup_group"
-        app:layout_constraintEnd_toEndOf="@+id/checkbox_leet"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/checkbox_leet"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        app:layout_constraintVertical_bias="0.896"
-        tools:ignore="MissingConstraints" />
+            <EditText
+                android:id="@+id/signup_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#79C5C3C3"
+                android:ems="10"
+                android:fontFamily="times"
+                android:hint="Name"
+                android:inputType="text"
+                android:textSize="12sp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="293dp" />
 
-    <EditText
-        android:id="@+id/signup_group"
-        android:layout_width="207dp"
-        android:layout_height="33dp"
-        android:background="#79C5C3C3"
-        android:ems="10"
-        android:hint="Group"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/ssignup_btn"
-        app:layout_constraintEnd_toEndOf="@+id/signup_leet"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/signup_leet"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        app:layout_constraintVertical_bias="0.947"
-        tools:ignore="MissingConstraints" />
+            <TextView
+                android:id="@+id/textView31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="274dp" />
 
-    <Button
-        android:id="@+id/ssignup_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Signup"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/signup_group"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="@+id/signup_group"
-        app:layout_constraintTop_toBottomOf="@+id/textView22"
-        app:layout_constraintVertical_bias="0.858"
-        tools:ignore="MissingConstraints" />
+            <EditText
+                android:id="@+id/signup_rollno"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#79C5C3C3"
+                android:ems="10"
+                android:fontFamily="times"
+                android:hint="Roll"
+                android:inputType="number"
+                android:textSize="12sp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="18dp"
+                tools:layout_editor_absoluteY="241dp" />
 
-    <TextView
-        android:id="@+id/textView22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Student Credentials"
-        android:textColor="@color/black"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.09" />
+            <EditText
+                android:id="@+id/signup_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#79C5C3C3"
+                android:ems="10"
+                android:fontFamily="times"
+                android:hint="Mobile"
+                android:inputType="number"
+                android:textSize="12sp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="378dp" />
 
-    <!--    <Spinner-->
-    <!--        android:id="@+id/spinner_sbatch"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_alignParentStart="true"-->
-    <!--        app:layout_constraintBottom_toTopOf="@+id/ssignup_btn"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/signup_group"-->
-    <!--        tools:layout_editor_absoluteX="64dp" />-->
+            <CheckBox
+                android:id="@+id/checkbox_leet"
+                android:layout_width="195dp"
+                android:layout_height="35dp"
+                android:layout_alignParentStart="true"
+                android:fontFamily="times"
+                android:text="Is LEET Student?"
+                android:textSize="12sp"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="418dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <EditText
+                android:id="@+id/signup_leet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#79C5C3C3"
+                android:ems="10"
+                android:fontFamily="times"
+                android:hint="Section"
+                android:inputType="text"
+                android:textSize="12sp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="536dp" />
+
+            <EditText
+                android:id="@+id/signup_group"
+                android:layout_width="161dp"
+                android:layout_height="35dp"
+                android:background="#79C5C3C3"
+                android:ems="10"
+                android:fontFamily="times"
+                android:hint="Group"
+                android:inputType="text"
+                android:textSize="12sp"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="639dp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/ssignup_btn"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient_button"
+                android:fontFamily="times"
+                android:text="Add Student"
+                android:textColor="@color/white"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="90dp"
+                tools:layout_editor_absoluteY="713dp" />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="times"
+                android:text="Student Credentials"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.165"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.042" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="77dp"
+                android:layout_height="22dp"
+                android:text="TextView"
+                tools:layout_editor_absoluteX="15dp"
+                tools:layout_editor_absoluteY="203dp" />
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.09"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView22"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                tools:layout_editor_absoluteX="41dp"
+                tools:layout_editor_absoluteY="358dp" />
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                tools:layout_editor_absoluteX="32dp"
+                tools:layout_editor_absoluteY="483dp" />
+
+            <TextView
+                android:id="@+id/textView34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="588dp" />
+
+            <!--    <Spinner-->
+            <!--        android:id="@+id/spinner_sbatch"-->
+            <!--        android:layout_width="match_parent"-->
+            <!--        android:layout_height="wrap_content"-->
+            <!--        android:layout_alignParentStart="true"-->
+            <!--        app:layout_constraintBottom_toTopOf="@+id/ssignup_btn"-->
+            <!--        app:layout_constraintTop_toBottomOf="@+id/signup_group"-->
+            <!--        tools:layout_editor_absoluteX="64dp" />-->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>
