@@ -13,6 +13,7 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
+        multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -54,6 +55,18 @@ dependencies {
 
     implementation ("com.sun.mail:android-mail:1.6.5")
     implementation ("com.sun.mail:android-activation:1.6.5")
+
+    implementation ("androidx.recyclerview:recyclerview:1.3.1")
+    implementation ("androidx.recyclerview:recyclerview-selection:1.1.0")
+
+    implementation("androidx.cardview:cardview:1.0.0")
+
+
+    implementation("androidx.multidex:multidex:2.0.1")
+
+    implementation ("com.github.PhilJay:MPAndroidChart:3.1.0")
+
+
 
 
 

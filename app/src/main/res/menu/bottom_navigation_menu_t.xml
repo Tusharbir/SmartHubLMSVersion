@@ -20,6 +20,11 @@
         android:icon="@drawable/course"
         android:title="Profile" />
 
+    <item
+        android:id="@+id/logout_t"
+        android:icon="@drawable/logout"
+        android:title="Logout" />
+
 
 
 

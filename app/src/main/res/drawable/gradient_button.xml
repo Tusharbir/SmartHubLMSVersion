@@ -2,21 +2,21 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <!-- Define the gradient colors and orientation here -->
+
             <gradient
                 android:startColor="#145DA0"
                 android:endColor="#145DA0"
                 android:angle="45" />
 
-            <!-- Optional: Define a border for the button -->
+
+            <corners android:radius="10dp" />
 
 
-            <!-- Optional: Define padding for the button content -->
             <padding
-                android:left="16dp"
-                android:top="12dp"
-                android:right="16dp"
-                android:bottom="12dp" />
+                android:left="5dp"
+                android:top="5dp"
+                android:right="5dp"
+                android:bottom="5dp" />
         </shape>
     </item>
 </selector>

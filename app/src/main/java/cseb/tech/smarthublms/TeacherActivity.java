@@ -98,6 +98,12 @@ public class TeacherActivity extends AppCompatActivity {
                     return true;
                 }
 
+                else if (itemId==R.id.logout_t) {
+
+                    LogoutLogic.logoutLogic( TeacherActivity.this);
+                    return true;
+                }
+
 
                 return false;
 
