@@ -4,17 +4,27 @@
 
         <item name="android:statusBarColor">@color/primaryColor</item>
         <item name="android:navigationBarColor">@color/secondaryColor</item>
+        <item name="android:windowIsTranslucent">true</item>
 
 
     </style>
+
+
 
     <style name="Theme.SmartHubLMS" parent="Base.Theme.SmartHubLMS" />
 
     <!-- styles.xml -->
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:fontFamily">@font/ptseriff</item>
+        <item name="android:windowIsTranslucent">true</item>
 
     </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_background</item>
+
+    </style>
+
 
 
 </resources>
