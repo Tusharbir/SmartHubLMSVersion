@@ -4,10 +4,10 @@
         android:icon="@drawable/course"
         android:title="Subject" />
 
-    <item
-        android:id="@+id/abc"
-        android:icon="@drawable/course"
-        android:title="Abc" />
+<!--    <item-->
+<!--        android:id="@+id/abc"-->
+<!--        android:icon="@drawable/course"-->
+<!--        android:title="Abc" />-->
 
     <item
         android:id="@+id/campusVibess"
@@ -24,6 +24,12 @@
         android:id="@+id/profile_s"
         android:icon="@drawable/course"
         android:title="Profile" />
+
+    <item
+        android:id="@+id/logouts"
+        android:icon="@drawable/logout"
+        android:title="Logout" />
+
 
 
 

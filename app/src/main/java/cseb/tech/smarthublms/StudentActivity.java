@@ -74,7 +74,8 @@ public class StudentActivity extends AppCompatActivity {
                     return true;
 
 
-                } else if (itemId == R.id.notification_s) {
+                }
+                else if (itemId == R.id.notification_s) {
                     if (Frag != "Notification")
                     {
                         //   replacefragment(new HomeFragment());
@@ -96,25 +97,32 @@ public class StudentActivity extends AppCompatActivity {
                         Toast.makeText(StudentActivity.this, "khulya va pra", Toast.LENGTH_SHORT).show();
                     }
                     return true;
-                }else if (itemId == R.id.abc) {
-                    if (Frag != "abc")
-                    {
-                        //   replacefragment(new HomeFragment());
-                        Frag = "abc";
-                    }
-                    else {
-//                        Toast.makeText(StudentActivity.this, "khulya va pra", Toast.LENGTH_SHORT).show();
-                    }
-                    return true;
+                }
+
+//                else if (itemId == R.id.abc)
+//                {
+//                    if (Frag != "abc")
+//                    {
+//                        //   replacefragment(new HomeFragment());
+//                        Frag = "abc";
+//                    }
+//                    else
+//                    {
+////                        Toast.makeText(StudentActivity.this, "khulya va pra", Toast.LENGTH_SHORT).show();
+//                    }
+//                    return true;
+//                }
+
+                else if (itemId==R.id.logouts) {
+
+                    LogoutLogic.logoutLogic( StudentActivity.this);
+
+
                 }
 
 
                 return false;
-
-
-
-
-            }
+  }
 
         });
 

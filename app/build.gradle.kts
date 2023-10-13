@@ -54,7 +54,10 @@ dependencies {
     implementation ("com.sun.mail:android-mail:1.6.5")
     implementation ("com.sun.mail:android-activation:1.6.5")
 
+    implementation ("androidx.recyclerview:recyclerview:1.3.1")
+    implementation ("androidx.recyclerview:recyclerview-selection:1.1.0")
 
+    implementation("androidx.cardview:cardview:1.0.0")
 
 
 

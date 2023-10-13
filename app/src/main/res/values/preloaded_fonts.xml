@@ -9,5 +9,7 @@
         <item>@font/noto_sans</item>
         <item>@font/playfair_display</item>
         <item>@font/raleway</item>
+        <item>@font/roboto_slab</item>
+        <item>@font/roboto_slab_thin</item>
     </array>
 </resources>
