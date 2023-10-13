@@ -13,6 +13,7 @@ android {
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
+        multiDexEnabled = true
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -58,6 +59,15 @@ dependencies {
     implementation ("androidx.recyclerview:recyclerview-selection:1.1.0")
 
     implementation("androidx.cardview:cardview:1.0.0")
+
+
+    implementation("androidx.multidex:multidex:2.0.1")
+
+    implementation ("com.github.PhilJay:MPAndroidChart:3.1.0")
+
+
+
+
 
 
 
