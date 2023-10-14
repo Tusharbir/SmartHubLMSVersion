@@ -87,7 +87,9 @@ public class AdminHomePage extends AppCompatActivity {
                         Toast.makeText(AdminHomePage.this, "khulya va pra", Toast.LENGTH_SHORT).show();
                     }
                     return true;
-                } else if (itemId==R.id.logout) {
+                }
+
+                else if (itemId==R.id.logout) {
 
                     LogoutLogic.logoutLogic( AdminHomePage.this);
 
