@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Post {
     private String content;
+    private String imageUrl;
     private Date timestamp;
     private String postedBy;
     private String imageURl;
@@ -32,6 +33,14 @@ public class Post {
     public void setPostedBy(String postedBy) {
         this.postedBy = postedBy;
     }
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
 
 
 }

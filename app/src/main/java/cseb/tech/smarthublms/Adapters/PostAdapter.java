@@ -4,10 +4,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -41,13 +44,21 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         Log.d("PostAdapter", "Posted by: " + postedBy);  // Debug log
         holder.tvPostedBy.setText(post.getPostedBy());
 
-//        Time stamp
+        String imageUrl = post.getImageUrl();
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            Glide.with(holder.itemView.getContext())
+                    .load(imageUrl)
+                    .into(holder.postImage);
+        } else {
+            holder.postImage.setVisibility(View.GONE); // Hide the ImageView if there's no image
+        }
+
+        // Time stamp
         Calendar today = Calendar.getInstance();
         Calendar uploadTime = Calendar.getInstance();
         uploadTime.setTime(post.getTimestamp());
 
         SimpleDateFormat sdf;
-
         if (today.get(Calendar.YEAR) == uploadTime.get(Calendar.YEAR) &&
                 today.get(Calendar.DAY_OF_YEAR) == uploadTime.get(Calendar.DAY_OF_YEAR)) {
             // If the timestamp is from today, format it as "HH:mm"
@@ -66,13 +77,15 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     }
 
     class PostViewHolder extends RecyclerView.ViewHolder {
-        TextView content, tvPostedBy,tvTimeStamp;
+        TextView content, tvPostedBy, tvTimeStamp;
+        ImageView postImage;
 
         PostViewHolder(View itemView) {
             super(itemView);
             content = itemView.findViewById(R.id.post_content);
             tvPostedBy = itemView.findViewById(R.id.tvPostedBy);
             tvTimeStamp = itemView.findViewById(R.id.tvTimeStamp);
+            postImage = itemView.findViewById(R.id.post_image);
         }
     }
 }

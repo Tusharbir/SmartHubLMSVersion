@@ -58,6 +58,16 @@ dependencies {
 
     implementation ("androidx.recyclerview:recyclerview:1.3.1")
     implementation ("androidx.recyclerview:recyclerview-selection:1.1.0")
+    implementation("com.google.firebase:firebase-storage:19.2.")
+    implementation ("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor ("com.github.bumptech.glide:compiler:4.12.0")
+    // Import the BoM for the Firebase platform
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+
+    // Add the dependency for the Realtime Database library
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation("com.google.firebase:firebase-database")
+
 
     implementation("androidx.cardview:cardview:1.0.0")
 

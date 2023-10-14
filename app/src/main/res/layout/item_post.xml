@@ -34,7 +34,13 @@
 
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/post_image"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
 
+        android:scaleType="centerCrop"
+        tools:src="@tools:sample/avatars" />
     <TextView
         android:id="@+id/post_content"
         android:layout_width="206dp"
