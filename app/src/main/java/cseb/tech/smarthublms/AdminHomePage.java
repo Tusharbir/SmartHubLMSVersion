@@ -12,7 +12,7 @@ import android.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
-import cseb.tech.smarthublms.AdminFragment.AddBranchesFragment;
+
 import cseb.tech.smarthublms.AdminFragment.AddCourseFragment;
 import cseb.tech.smarthublms.AdminFragment.AddHodsFragment;
 import cseb.tech.smarthublms.AdminFragment.HomeFragment;
@@ -88,6 +88,18 @@ public class AdminHomePage extends AppCompatActivity {
                     }
                     return true;
                 }
+
+//                else if (itemId == R.id.adminViewStudent) {
+//                    if (Frag != "adminViewStudent") {
+//                        replacefragment(new AdminViewStudentsFragment());
+//                        Frag = "adminViewStudent";
+//                    } else {
+//                        Toast.makeText(AdminHomePage.this, "khulya va pra", Toast.LENGTH_SHORT).show();
+//                    }
+//                    return true;
+//                }
+
+
 
                 else if (itemId==R.id.logout) {
 
