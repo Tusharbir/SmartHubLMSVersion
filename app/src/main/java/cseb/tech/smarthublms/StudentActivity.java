@@ -26,13 +26,13 @@ public class StudentActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Student", Toast.LENGTH_SHORT).show();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.containers, new HomeFragment()).commit();
+       // getSupportFragmentManager().beginTransaction().replace(R.id.containers, new HomeFragment()).commit();
         BottomNavigationView bottomNavigations;
 
 
         bottomNavigations = findViewById(R.id.bottom_navigation_s);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.containers, new HomeFragment()).commit();
+       // getSupportFragmentManager().beginTransaction().replace(R.id.containers, new HomeFragment()).commit();
 
         Frag = "Subject";
 
