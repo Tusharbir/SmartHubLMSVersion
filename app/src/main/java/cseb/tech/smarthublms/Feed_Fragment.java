@@ -85,11 +85,18 @@ public class Feed_Fragment extends Fragment {
         adapter = new PostAdapter(postsList);
         recyclerViewFeed.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerViewFeed.setAdapter(adapter);
-
+        imageViewSelected.setVisibility(View.GONE);
         btnViewImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openFileChooser();
+                if(imageViewSelected.getVisibility()==View.GONE){
+                    imageViewSelected.setVisibility(View.VISIBLE);
+                }
+                else{
+                    imageViewSelected.setVisibility(View.GONE);
+
+                }
             }
         });
 
@@ -103,6 +110,9 @@ public class Feed_Fragment extends Fragment {
                     } else {
                         fetchUserNameAndSavePost(postContent, null);
                     }
+                }
+                else if(postContent.isEmpty() && selectedImageUri!=null) {
+                uploadImageToFirebaseAndSavePost(selectedImageUri,"");
                 }
             }
         });
@@ -155,6 +165,7 @@ public class Feed_Fragment extends Fragment {
                 fetchPostsFromFirestore();
                 inputPost.setText("");
                 imageViewSelected.setImageDrawable(null);
+                imageViewSelected.setVisibility(View.GONE);
                 selectedImageUri = null;
             }
         }).addOnFailureListener(new OnFailureListener() {
