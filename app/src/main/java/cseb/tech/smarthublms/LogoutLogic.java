@@ -18,5 +18,6 @@ public class LogoutLogic {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear all back stack
         activity.startActivity(intent);
         activity.finish();
+
     }
 }

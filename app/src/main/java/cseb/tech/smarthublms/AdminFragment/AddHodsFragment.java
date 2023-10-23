@@ -247,14 +247,14 @@ public class AddHodsFragment extends Fragment {
 
                                                     Map<String, Object> hod = new HashMap<>();
                                                     hod.put("Name", nameS);
-                                                    hod.put("Father's Name", fNameS);
-                                                    hod.put("Mother's Name", mNameS);
-                                                    hod.put("Email-ID", emailIdS);
-                                                    hod.put("Phone Number", phoneNumberS);
+                                                    hod.put("Fathers Name", fNameS);
+                                                    hod.put("Mothers Name", mNameS);
+                                                    hod.put("EmailID", emailIdS);
+                                                    hod.put("PhoneNumber", phoneNumberS);
                                                     hod.put("State", stateS);
                                                     hod.put("City", cityS);
                                                     hod.put("Address", addressS);
-                                                    hod.put("Pin Code", pinCodeS);
+                                                    hod.put("PinCode", pinCodeS);
                                                     hod.put("Course", courseS);
                                                     hod.put("Branch", branchS);
                                                     hod.put("UserId", userid);

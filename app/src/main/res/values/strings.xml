@@ -2,7 +2,7 @@
     <string name="app_name">SmartHub UNi LMS</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-<!--    add hodd-->
+    <!--    add hodd-->
     <string-array name="section_spinner">
         <item>Section 1</item>
         <item>Section 2</item>

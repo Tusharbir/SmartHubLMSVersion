@@ -21,7 +21,6 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -34,7 +33,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicLong;
 
 import cseb.tech.smarthublms.GreetingLogic;
 import cseb.tech.smarthublms.R;
@@ -109,8 +107,11 @@ public class HomeFragment extends Fragment{
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
+
+
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
         pieChart = view.findViewById(R.id.pieChart);
         progressBar= view.findViewById(R.id.progressBar2);
 
@@ -127,13 +128,15 @@ public class HomeFragment extends Fragment{
                 new AdminHomeItemsModel(R.drawable.course2,"Manage Courses", AddCourseFragment.class),
                 new AdminHomeItemsModel(R.drawable.hods,"Manage Hods", AddHodsFragment.class),
                 new AdminHomeItemsModel(R.drawable.teacher,"Manage Teachers", LogoutLogic.class),
-                new AdminHomeItemsModel(R.drawable.student2,"Mange Students", AddCourseFragment.class),
+//                new AdminHomeItemsModel(R.drawable.student2,"Mange Students", AdminViewStudentsFragment.class),
                 new AdminHomeItemsModel(R.drawable.userlist,"Users List", AddHodsFragment.class)
                 //... add all other options
         );
 
         AdminHomeOptionsAdapter adapter = new AdminHomeOptionsAdapter(options, getActivity().getSupportFragmentManager());
         recyclerView.setAdapter(adapter);
+
+
 
         setupPieChartAdminUserCount();
 
@@ -185,9 +188,6 @@ public class HomeFragment extends Fragment{
         int teacherValue = (int) totalTeachers[0];
         int HODValue = (int) totalHODs[0];
 
-        Log.i("Teacher Valyue", String.valueOf(teacherValue));
-        Log.i("Student Valyue", String.valueOf(studentValue));
-        Log.i("HODS Valyue", String.valueOf(HODValue));
 
         int[] chartColors = {
                 Color.parseColor("#0074a3"),         // Students
@@ -219,4 +219,6 @@ public class HomeFragment extends Fragment{
 
         progressBar.setVisibility(View.GONE);
     }
+
+
 }

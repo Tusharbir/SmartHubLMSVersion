@@ -20,6 +20,12 @@
         android:icon="@drawable/logout"
         android:title="Logout" />
 
+    <item
+        android:id="@+id/adminViewStudent"
+        android:icon="@drawable/logout"
+        android:visible="false"/>
+
+
 <!--    <item-->
 <!--        android:id="@+id/viewHods"-->
 <!--        android:icon="@drawable/teacher"-->

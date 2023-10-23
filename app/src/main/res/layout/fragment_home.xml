@@ -29,7 +29,7 @@
                 app:layout_constraintHorizontal_bias="0.184"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.173" />
+                app:layout_constraintVertical_bias="0.115" />
 
             <ImageView
                 android:id="@+id/imageView6"
@@ -61,17 +61,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/greetingtext"
                 app:layout_constraintVertical_bias="0.001" />
 
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewOptions"
                 android:layout_width="359dp"
                 android:layout_height="99dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.584"
+                app:layout_constraintHorizontal_bias="0.48"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.34" />
-
+                app:layout_constraintVertical_bias="0.236" />
 
             <TextView
                 android:id="@+id/textView38"
@@ -110,7 +110,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editTextText"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.118" />
 
             <ProgressBar
                 android:id="@+id/progressBar2"
@@ -120,9 +120,21 @@
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.48"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.815" />
+                app:layout_constraintVertical_bias="0.687" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/departmentRecyclerView"
+                android:layout_width="358dp"
+                android:layout_height="127dp"
+                android:layout_marginTop="44dp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.471"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pieChart" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

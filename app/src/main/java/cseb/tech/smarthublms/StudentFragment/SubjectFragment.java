@@ -1,5 +1,7 @@
 package cseb.tech.smarthublms.StudentFragment;
 
+import static android.content.ContentValues.TAG;
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -65,11 +67,12 @@ public class SubjectFragment extends Fragment {
                     String batche = task.getResult().getString("Batche");
                     String Group = task.getResult().getString("Group");
                     String Section = task.getResult().getString("Section");
+                    String Branch = task.getResult().getString("Branch");
 
                     Log.d("indd", "onComplete: "+batche+Group+Section);
 
                     firestore.collection("Subject")
-                            .whereEqualTo("Batche",batche)
+                            .whereEqualTo("Batche",batche).whereEqualTo("Branch",Branch)
 
                             .whereEqualTo("Section",Section).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                                 @Override
@@ -80,6 +83,24 @@ public class SubjectFragment extends Fragment {
                                     {
                                         Toast.makeText(getContext(), "vhjjhj", Toast.LENGTH_SHORT).show();
 
+                                        Toast.makeText(getActivity(), d.getString("Teach_id"), Toast.LENGTH_SHORT).show();
+
+                                        firestore.collection("Teacher").whereEqualTo("Teach_id",d.getString("Teach_id")).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onSuccess(QuerySnapshot queryDocumentSnapshots)
+                                            {
+
+                                                List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                                                for (DocumentSnapshot k :list)
+                                                {
+                                                    Toast.makeText(getActivity(), k.getString("Name"), Toast.LENGTH_SHORT).show();
+
+                                                    Log.d("TAGs", "onSuccess: "+k.getString("Teach_id") + k.getString("City")+
+                                                            d.getString("Branch")+d.getString("Subject")+
+                                                            k.getString("Name")+d.getString("Link"));
+                                                }
+                                            }
+                                        });
 
                                     }
                                 }

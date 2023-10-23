@@ -58,16 +58,20 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.212" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/adminAddCourseButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:text="Button"
+            android:background="@drawable/gradient_button"
+            android:text="Add Course"
+            android:textColor="@color/white"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.675" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
